@@ -11,7 +11,7 @@ async function getproducts(url) {
         let productsHTML="";
         for (let i of productList){
             productsHTML += `<tr>
-                          <td><img src=${i.image}</td>
+                          <td><img src=${i.image} width="100" height="auto"></td>
                           <td>${i.name}</td>
                           <td>${i.description}</td>
                           <td>${i.cost}</td>
