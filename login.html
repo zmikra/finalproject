@@ -19,11 +19,24 @@
 <body>
   <main class="mt-5">
     <div class="container">
+      <form id="loginForm">
+        <label for="usuario">Usuario:</label> <br>
+        <input type="text" id="usuario" name="usuario" required>
+        <br> <br>
+        <label for="contrasena">Contraseña:</label> <br>
+        <input type="password" id="contrasena" name="contrasena" required>
+        <br> <br>
+        <input type="button" value="Ingresar" onclick="validarFormulario()">
+      </form>
+
+      <!--
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
+      -->
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
