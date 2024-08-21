@@ -38,8 +38,37 @@
   </nav>
   <main class="pb-5 container">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <!--<div class="alert alert-danger text-center" role="alert">-->
+        <!--<h4 class="alert-heading">Funcionalidad en desarrollo</h4>-->
+        <!--Realizar el prototipo de una pantalla donde se visualice un listado de productos, 
+        y cada ítem del listado debe cumplir con mostrar los siguientes datos:
+
+Imagen.
+Nombre.
+Descripción.
+Precio.
+Cantidad de vendidos
+ 
+
+3- Replicar el diseño del prototipo del punto 2- en la página products.html. 
+Además esta página debe realizar una petición web a una URL donde se encuentra una colección de productos 
+en formato JSON (pertenecientes a una categoría), con la información (precio, nombre, descripción, 
+cantidad vendidos e imagen) respectiva a cada producto.
+En principio haremos uso únicamente de la categoría 101 (Autos), pero en entregas 
+posteriores nos encargaremos de mostrarle al usuario los productos de la categoría seleccionada.-->
+          <div id="productList" class="productList">
+            <table>
+              <thead>
+                  <th>Imagen</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad de vendidos</th>
+              </thead>
+              <tbody id="tproducts">
+              </tbody>
+          </table>
+          </div>
       </div>
     </div>
   </main>
