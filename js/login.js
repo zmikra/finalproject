@@ -5,6 +5,7 @@ function validarFormulario() {
     if (usuario === "" || contrasena === "") {
         alert("Por favor, complete ambos campos.");
     } else {
-        window.location.href = "index.html";
+        sessionStorage.setItem("sesionActiva", "true"); // Guardar la sesión al autenticarse
+        window.location.href = "index.html";  
     }
 }
