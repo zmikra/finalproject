@@ -188,11 +188,15 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
+
+/* Estilos para la tabla de productos */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -201,23 +205,108 @@ table {
   border-radius: 8px;
   overflow: hidden;
 }
+
 thead {
   background-color: #f8f8f8;
 }
+
 th, td {
   padding: 12px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
+
 th {
   background-color: #f1f1f1;
   font-weight: bold;
 }
+
 tbody tr:hover {
   background-color: #f9f9f9;
 }
+
 img {
   max-width: 100px;
   height: auto;
   border-radius: 4px;
+}
+
+/* Media queries para que quede responsive */
+
+@media (max-width: 1366px) {
+  .container {
+    padding: 15px;
+  }
+
+  table th, table td {
+    padding: 10px;
+  }
+
+  .jumbotron .container {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .jumbotron .lead {
+    font-size: 30px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  img {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .jumbotron .container {
+    max-width: 25rem;
+  }
+
+  .jumbotron .lead {
+    font-size: 24px;
+  }
+
+  table th, table td {
+    padding: 8px;
+  }
+
+  img {
+    max-width: 70px;
+  }
+}
+
+@media (max-width: 568px) {
+  .jumbotron {
+    height: 40vh;
+    padding: 3em;
+  }
+
+  .jumbotron .lead {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  img {
+    max-width: 60px;
+  }
+
+  .container {
+    padding: 10px;
+  }
 }
