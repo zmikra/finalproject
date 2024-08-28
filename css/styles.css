@@ -308,5 +308,10 @@ img {
 
   .container {
     padding: 10px;
+
+  }
+  .navbar-toggler {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
