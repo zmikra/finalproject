@@ -23,3 +23,4 @@ async function getproducts(url) {
 document.addEventListener("DOMContentLoaded", function(e){
     getproducts("https://japceibal.github.io/emercado-api/cats_products/101.json");
 });
+
