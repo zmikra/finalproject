@@ -1,3 +1,13 @@
+// Verificar si la sesión está activa
+if (sessionStorage.getItem("sesionActiva") !== "true") {
+    // Redireccionar a login.html si no está autenticado
+    window.location.href = "login.html";
+}else {
+    // Mostrar el nombre de usuario en la esquina superior derecha
+    var usuario = sessionStorage.getItem("usuario");
+    document.getElementById("nombreUsuario").textContent =  usuario;
+}
+
 async function getproducts(url) {
     return fetch(url)
         .then(response => response.json())
@@ -30,3 +40,4 @@ function showProducts(productList) {
 document.addEventListener("DOMContentLoaded", function() {
     getproducts("https://japceibal.github.io/emercado-api/cats_products/101.json");
 });
+

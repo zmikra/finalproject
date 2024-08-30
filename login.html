@@ -9,33 +9,27 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(248, 249, 250);
-    }
-  </style>
+  <link href="css/stylelogin.css" rel="stylesheet">
 </head>
 
 <body>
-  <main class="mt-5">
-    <div class="container">
-      <form id="loginForm"> <!-- Implementación de prototipo 1-->
-        <label for="usuario">Usuario:</label> <br>
-        <input type="text" id="usuario" name="usuario" required>
-        <br> <br>
-        <label for="contrasena">Contraseña:</label> <br>
-        <input type="password" id="contrasena" name="contrasena" required>
-        <br> <br>
-        <input type="button" value="Ingresar" onclick="validarFormulario()">
+  <main class="d-flex justify-content-center align-items-center vh-100 login-page">
+    <div class="login-container text-center p-5 rounded">
+      <h1 class="text-uppercase">login</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="usuario" class="sr-only">Usuario:</label>
+          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required>
+        </div>
+        <div class="form-group mt-4">
+          <label for="contrasena" class="sr-only">Contraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Contraseña" required>
+        </div>
+        <button type="button" class="btn btn-primary btn-block mt-4" onclick="validarFormulario()">Login</button>
       </form>
-
-      <!--
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-      -->
     </div>
   </main>
+  
 
   <footer class="text-muted">
     <div class="container">
