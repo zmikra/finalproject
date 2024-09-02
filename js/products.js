@@ -8,13 +8,13 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
     document.getElementById("nombreUsuario").textContent =  usuario;
 }
 
-async function getproducts(url) {
+/*async function getproducts(url) {
     return fetch(url)
         .then(response => response.json())
         .then(productList => {
             showProducts(productList.products);
         });
-}
+}*/
 
 function showProducts(productList) {
     let productsHTML = "";
@@ -38,6 +38,12 @@ function showProducts(productList) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    getproducts("https://japceibal.github.io/emercado-api/cats_products/101.json");
+    let catId = localStorage.getItem("catID");
+    //getJSONData("https://japceibal.github.io/emercado-api/cats_products/" + catId + ".json");
+    getJSONData(PRODUCTS_URL + catId + ".json").then(function(resultObj){
+        if (resultObj.status === "ok"){
+            showProducts(resultObj.data.products);
+            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+        }
+    });
 });
-
