@@ -11,8 +11,6 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/stylesproducts.css" rel="stylesheet">
-  
-  
 </head>
 
 <body>
@@ -34,20 +32,53 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nombreUsuario"></a> <!-- Nombre de usuario en la esquino superior derecha-->
-        </li>
+            <a class="nav-link" id="nombreUsuario"></a> <!-- Nombre de usuario en la esquina superior derecha-->
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <main class="pb-5 container">
     <div class="container">
-      <!--<div class="alert alert-danger text-center" role="alert">-->
-        <!--<h4 class="alert-heading">Funcionalidad en desarrollo</h4>-->
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="sortPriceAsc">
+            <label class="btn btn-light" for="sortPriceAsc">Precio Ascendente</label>
+            <input type="radio" class="btn-check" name="options" id="sortPriceDesc">
+            <label class="btn btn-light" for="sortPriceDesc">Precio Descendente</label>
+            <input type="radio" class="btn-check" name="options" id="sortByRelevance">
+            <label class="btn btn-light" for="sortByRelevance"><i class="fas fa-sort-amount-down mr-1"></i> Relevancia</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2">Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
         <div id="productList" class="productList">
           <div id="tproducts" class="productContainer">
+            <!-- Los productos se insertarán aquí mediante JavaScript -->
           </div>
-      </div>      
+        </div>
       </div>
     </div>
   </main>
