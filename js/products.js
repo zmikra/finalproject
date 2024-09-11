@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
 
+
         if ((minPrice != undefined) && (minPrice != "") && (parseFloat(minPrice)) >= 0) {
             minPrice = parseFloat(minPrice);
         } else {
@@ -123,3 +124,4 @@ document.addEventListener("DOMContentLoaded", function() {
         showProducts(currentProductsArray);
     });
 });
+
