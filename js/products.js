@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Creo las variables similares a las que tenemos en categories.js 
 const ORDER_ASC_BY_PRICE = "PRICE_ASC";
 const ORDER_DESC_BY_PRICE = "PRICE_DESC";
@@ -16,6 +17,9 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
     var usuario = sessionStorage.getItem("usuario");
     document.getElementById("nombreUsuario").textContent = usuario;
 }
+=======
+
+>>>>>>> main
 
 
 /*creo función para hacerle sort a los productos y ordenarlos según los criterios manejados de la entrega.
