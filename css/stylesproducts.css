@@ -25,7 +25,7 @@
   }
   
   .productImage img {
-    max-width: 8rem;
+    max-width: 12rem;
     height: auto;
     border-radius: 4px;
   }
@@ -84,7 +84,7 @@
   
   @media (max-width: 568px) {
     .productImage img {
-      max-width: 60px;
+      max-width: 100%;
     }
   
     .productItem {
