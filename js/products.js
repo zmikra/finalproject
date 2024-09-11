@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Creo las variables similares a las que tenemos en categories.js 
 const ORDER_ASC_BY_PRICE = "PRICE_ASC";
 const ORDER_DESC_BY_PRICE = "PRICE_DESC";
@@ -7,20 +6,6 @@ let currentProductsArray = [];
 let currentSortCriteria = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
-
-// Verificar si la sesión está activa
-if (sessionStorage.getItem("sesionActiva") !== "true") {
-    // Redireccionar a login.html si no está autenticado
-    window.location.href = "login.html";
-} else {
-    // Mostrar el nombre de usuario en la esquina superior derecha
-    var usuario = sessionStorage.getItem("usuario");
-    document.getElementById("nombreUsuario").textContent = usuario;
-}
-=======
-
->>>>>>> main
-
 
 /*creo función para hacerle sort a los productos y ordenarlos según los criterios manejados de la entrega.
 Este sort los ordena haciendo uso de una función anónima*/
