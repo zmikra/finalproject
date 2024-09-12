@@ -37,7 +37,7 @@ function showProducts(productList) {
             ((maxPrice == undefined) || (parseFloat(i.cost) <= maxPrice))) {
 
             productsHTML += `
-            <div class="productItem">
+            <div class="productItem" onclick="setProductID(${i.id})">
                 <div class="productImage">
                     <img src="${i.image}" alt="${i.name}">
                 </div>
@@ -125,3 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+//funcion que guarda el id y te redirige al product-info.html
+function setProductID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html";
+}
