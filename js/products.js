@@ -30,8 +30,17 @@ function sortProducts(criteria, array) {
     return result;
 }
 
-function showProducts(productList) {
+function showProducts(productList, searchInput) {
     let productsHTML = "";
+
+    // si filtra por texto:
+    if (searchInput != undefined) {
+        // mantener unicamente los elementos que coinciden con la busqueda
+        productList = productList.filter(p => {
+            return p.name.toLowerCase().includes(searchInput.toLowerCase())
+            || p.description.toLowerCase().includes(searchInput.toLowerCase())
+        });
+    }
     for (let i of productList) {
         if (((minPrice == undefined) || (parseFloat(i.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (parseFloat(i.cost) <= maxPrice))) {
@@ -52,8 +61,17 @@ function showProducts(productList) {
             </div>`;
         }
     }
+
+    if (productsHTML === "") {
+        productsHTML = "No se encontraron productos.";
+    }
+
     document.getElementById("tproducts").innerHTML = productsHTML;
 }
+
+document.getElementById("buscador").addEventListener("input", (event) => {
+    showProducts(currentProductsArray, event.target.value)
+});
 
 //esta función toma el criterio con el cual vamos a ordenar los productos y el array mismo
 function sortAndShowProducts(sortCriteria, productsArray) {
@@ -68,7 +86,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
     showProducts(currentProductsArray);
 }
-//cuando carga la página se ejecuta:
+//PUNTO 1:
 document.addEventListener("DOMContentLoaded", function() {
     //toma los datos de catID, luego de recibirlos verifica que estén ok (if) y los muestra con showproducts
     let catId = localStorage.getItem("catID");
@@ -79,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showProducts(currentProductsArray);
         }
     });
+//FIN PUNTO 1.
 //líneas de código de eventos:
 //al hacer clic ordena los productos de menor a mayor
     document.getElementById("sortPriceAsc").addEventListener("click", function() {
