@@ -68,7 +68,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
     showProducts(currentProductsArray);
 }
-//cuando carga la página se ejecuta:
+//PUNTO 1:
 document.addEventListener("DOMContentLoaded", function() {
     //toma los datos de catID, luego de recibirlos verifica que estén ok (if) y los muestra con showproducts
     let catId = localStorage.getItem("catID");
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showProducts(currentProductsArray);
         }
     });
+//FIN PUNTO 1.
 //líneas de código de eventos:
 //al hacer clic ordena los productos de menor a mayor
     document.getElementById("sortPriceAsc").addEventListener("click", function() {
