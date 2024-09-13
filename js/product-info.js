@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </div>
                     <div class="col-12 productImage">
-                        <img src="${product.image}" alt="${product.name}">
+                        <img src="${product.images[0]}" alt="${product.name}">
                     </div>
                 `;
 
