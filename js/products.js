@@ -30,8 +30,17 @@ function sortProducts(criteria, array) {
     return result;
 }
 
-function showProducts(productList) {
+function showProducts(productList, searchInput) {
     let productsHTML = "";
+
+    // si filtra por texto:
+    if (searchInput != undefined) {
+        // mantener unicamente los elementos que coinciden con la busqueda
+        productList = productList.filter(p => {
+            return p.name.toLowerCase().includes(searchInput.toLowerCase())
+            || p.description.toLowerCase().includes(searchInput.toLowerCase())
+        });
+    }
     for (let i of productList) {
         if (((minPrice == undefined) || (parseFloat(i.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (parseFloat(i.cost) <= maxPrice))) {
@@ -59,6 +68,10 @@ function showProducts(productList) {
 
     document.getElementById("tproducts").innerHTML = productsHTML;
 }
+
+document.getElementById("buscador").addEventListener("input", (event) => {
+    showProducts(currentProductsArray, event.target.value)
+});
 
 //esta función toma el criterio con el cual vamos a ordenar los productos y el array mismo
 function sortAndShowProducts(sortCriteria, productsArray) {
