@@ -52,6 +52,11 @@ function showProducts(productList) {
             </div>`;
         }
     }
+
+    if (productsHTML === "") {
+        productsHTML = "No se encontraron productos.";
+    }
+
     document.getElementById("tproducts").innerHTML = productsHTML;
 }
 
