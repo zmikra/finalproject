@@ -112,3 +112,20 @@ function showImages(images) {
     return htmlImages;
 }
 
+//tu opinion estrellas
+const stars = document.querySelectorAll('.star');
+    
+// Evento click para pintar estrellas
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        stars.forEach(s => s.style.color = 'lightgray'); // Resetear todas
+        for (let i = 0; i < star.dataset.value; i++) {
+            stars[i].style.color = 'orange'; // Pintar hasta la seleccionada
+        }
+    });
+
+    // Evento doble clic para despintar todas las estrellas
+    star.addEventListener('dblclick', () => {
+        stars.forEach(s => s.style.color = 'lightgray'); // Resetear todas las estrellas
+    });
+});
