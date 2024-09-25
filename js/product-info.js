@@ -69,7 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
     getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(function (commentsResult) {
         if (commentsResult.status === "ok") {
             let comments = commentsResult.data;
-            let commentsHTML = '';
+            let commentsHTML = `
+                                 <h4 class="comments-title">Opiniones del producto</h4>
+                               `;
     
             // Usando un bucle for para iterar sobre los comentarios
             for (let i = 0; i < comments.length; i++) {
