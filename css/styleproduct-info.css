@@ -124,6 +124,7 @@
     font-size: 30px;
     color: lightgray;
     cursor: pointer;
+    user-select: none; /* Evita la selección de las estrellas */
 }
 
 .button-container {
