@@ -40,6 +40,58 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    //PUNTO 2 ENTREGA 4
+    //función que genera estrellas para la calificación
+    function generateStars(rating) {
+        let starsHTML = '';
+        const maxStars = 5; // Máximo de estrellas a mostrar
+    
+        const fullStars = Math.floor(rating); // calcula cuántas estrellas completas hay
+        const halfStar = rating % 1 >= 0.5 ? 1 : 0;  /*verifica si hay al menos 0.5 en la calificación 
+        para agregar una media estrella*/
+        const emptyStars = maxStars - fullStars - halfStar; /*determina cuántas estrellas vacías se necesitan, 
+        restando las estrellas completas y la media estrella*/
+    
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<span class="fa fa-star checked"></span>';
+        }
+        if (halfStar) {
+            starsHTML += '<span class="fa fa-star-half-o checked"></span>';
+        }
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<span class="fa fa-star"></span>';
+        }
+    
+        return starsHTML;
+    }
+
+    if(productID){
+    getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(function (commentsResult) {
+        if (commentsResult.status === "ok") {
+            let comments = commentsResult.data;
+            let commentsHTML = '';
+    
+            // Usando un bucle for para iterar sobre los comentarios
+            for (let i = 0; i < comments.length; i++) {
+                let comment = comments[i];
+                commentsHTML += `
+                    <li class="list-group-item">
+                      <div class="comment-header">
+                        <h5 class="userName">${comment.user}</h5>
+                        <span class="datetime">${comment.dateTime}</span>
+                        <div class="star-container">
+                          ${generateStars(comment.score)}
+                        </div>
+                    </div>
+                    <p class="productDescription">${comment.description}</p>
+                    </li>
+                `;
+            }
+    
+            document.getElementById("list").innerHTML = commentsHTML;
+        }
+    });
+}
 });
 
 function showImages(images) {
