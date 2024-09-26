@@ -6,6 +6,7 @@ let currentProductsArray = [];
 let currentSortCriteria = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
+let currentSearchInput = ""; //  variable global para almacenar el texto de búsqueda
 
 /*creo función para hacerle sort a los productos y ordenarlos según los criterios manejados de la entrega.
 Este sort los ordena haciendo uso de una función anónima*/
@@ -70,7 +71,9 @@ function showProducts(productList, searchInput) {
 }
 
 document.getElementById("buscador").addEventListener("input", (event) => {
-    showProducts(currentProductsArray, event.target.value)
+    currentSearchInput = event.target.value; // Actualiza el valor de la búsqueda globalmente
+    showProducts(currentProductsArray, currentSearchInput); // Usa el valor almacenado en currentSearchInput
+
 });
 
 //esta función toma el criterio con el cual vamos a ordenar los productos y el array mismo
@@ -84,7 +87,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     }
 
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
-    showProducts(currentProductsArray);
+    showProducts(currentProductsArray, currentSearchInput);
 }
 //PUNTO 1:
 document.addEventListener("DOMContentLoaded", function() {
