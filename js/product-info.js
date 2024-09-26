@@ -111,12 +111,12 @@ document.querySelector(".submit-btn").addEventListener("click", () => {
     //uso un if que tenga como condición el valor true de opinionText y que haya + de 0 estrellas seleccionadas
     if (opinionText && selectedStars > 0) {
         let commentsList = document.getElementById("list");
-                
+        let usuario = sessionStorage.getItem("usuario")    
         // creo variable newCommentHTML que tome los datos del comentario, fecha, hora y estrellas
         let newCommentHTML = `
             <li class="list-group-item">
                 <div class="comment-header">
-                    <h5 class="userName">Usuario Anónimo</h5>
+                    <h5 class="userName">${usuario}</h5>
                     <span class="datetime">${new Date().toLocaleString()}</span>
                     <div class="star-container">
                         ${generateStars(selectedStars)}
