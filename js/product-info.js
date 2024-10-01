@@ -37,9 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
 
                 document.getElementById("product-info").innerHTML = productHTML;
+            
+                // Carga los productos relacionados
+                showRelatedProducts(product.relatedProducts);
+
             }
         });
     }
+
     //PUNTO 2 ENTREGA 4
     //función que genera estrellas para la calificación
     function generateStars(rating) {
@@ -94,52 +99,79 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     }
-//DESAFIATE
-//hago evento al hacer click en el botón de enviar opinión
-document.querySelector(".submit-btn").addEventListener("click", () => {
-    //tomo el valor string ingresado en el textarea
-    let opinionText = document.getElementById("opinion").value;
-    //defino una variable para que contenga las estrellas que marque como calificación
-    let selectedStars = 0;
-        
-    //uso un bucle for para contar cuántas estrellas se marcaron
-    for (let i = 0; i < stars.length; i++) {
-        if (stars[i].style.color === "orange") {
-            selectedStars++;
+
+    //DESAFIATE
+    //hago evento al hacer click en el botón de enviar opinión
+    document.querySelector(".submit-btn").addEventListener("click", () => {
+        //tomo el valor string ingresado en el textarea
+        let opinionText = document.getElementById("opinion").value;
+        //defino una variable para que contenga las estrellas que marque como calificación
+        let selectedStars = 0;
+            
+        //uso un bucle for para contar cuántas estrellas se marcaron
+        for (let i = 0; i < stars.length; i++) {
+            if (stars[i].style.color === "orange") {
+                selectedStars++;
+            }
+        }
+        //uso un if que tenga como condición el valor true de opinionText y que haya + de 0 estrellas seleccionadas
+        if (opinionText && selectedStars > 0) {
+            let commentsList = document.getElementById("list");
+            let usuario = sessionStorage.getItem("usuario")    
+            // creo variable newCommentHTML que tome los datos del comentario, fecha, hora y estrellas
+            let newCommentHTML = `
+                <li class="list-group-item">
+                    <div class="comment-header">
+                        <h5 class="userName">${usuario}</h5>
+                        <span class="datetime">${new Date().toLocaleString()}</span>
+                        <div class="star-container">
+                            ${generateStars(selectedStars)}
+                        </div>
+                    </div>
+                        <p class="productDescription">${opinionText}</p>
+                </li>
+            `;
+                    
+            // agrego el nuevo comentario a la lista de comentarios ya existente
+            commentsList.innerHTML += newCommentHTML;
+            
+            // limpio textarea y estrellas
+            document.getElementById("opinion").value = '';
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].style.color = 'lightgray';
+            }
+            } else {
+                alert("Por favor, escribe un comentario y selecciona una calificación.");
+            }
+    }); //FIN DESAFIATE
+
+
+    // Funcion para mostrar los productos relacionados
+    function showRelatedProducts (relatedProducts) {
+        let relatedHTML= "";
+        for (let i=0; i<relatedProducts.length; i++) {
+            let product = relatedProducts[i];
+            relatedHTML += `
+                <div class="col-3 related-product" data-id="${product.id}">
+                    <h5 class="related-product-title">${product.name}</h5>   
+                    <img src="${product.image}" alt="${product.name}" class="img-fluid"> 
+                </div>
+            `;
+        }
+
+        document.querySelector(".related-products-list").innerHTML = relatedHTML;
+
+        // Agrega evento de click para cada related product
+        let relatedItems = document.querySelectorAll(".related-product");
+        for (let i=0; i<relatedItems.length; i++) {
+            relatedItems[i].addEventListener("click", function() {
+                let newProductID = relatedItems[i].getAttribute("data-id");
+                localStorage.setItem("productID", newProductID);
+                window.location.href = "product-info.html";
+            });
         }
     }
-    //uso un if que tenga como condición el valor true de opinionText y que haya + de 0 estrellas seleccionadas
-    if (opinionText && selectedStars > 0) {
-        let commentsList = document.getElementById("list");
-        let usuario = sessionStorage.getItem("usuario")    
-        // creo variable newCommentHTML que tome los datos del comentario, fecha, hora y estrellas
-        let newCommentHTML = `
-            <li class="list-group-item">
-                <div class="comment-header">
-                    <h5 class="userName">${usuario}</h5>
-                    <span class="datetime">${new Date().toLocaleString()}</span>
-                    <div class="star-container">
-                        ${generateStars(selectedStars)}
-                    </div>
-                </div>
-                    <p class="productDescription">${opinionText}</p>
-            </li>
-        `;
-                
-        // agrego el nuevo comentario a la lista de comentarios ya existente
-        commentsList.innerHTML += newCommentHTML;
-        
-        // limpio textarea y estrellas
-        document.getElementById("opinion").value = '';
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].style.color = 'lightgray';
-        }
-        } else {
-            alert("Por favor, escribe un comentario y selecciona una calificación.");
-        }
-}); //FIN DESAFIATE
 });
-
 
 function showImages(images) {
     let htmlImages = "";
