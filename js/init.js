@@ -49,3 +49,31 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
   var usuario = sessionStorage.getItem("usuario");
   document.getElementById("nombreUsuario").textContent =  usuario;
 }
+
+//darkmode
+
+// Cambiar tema
+const themeToggle = document.getElementById('themeToggle');
+
+// Función para aplicar el tema guardado
+function applyTheme(theme) {
+  if (theme === 'night') {
+    document.body.classList.add('night-mode');
+    themeToggle.textContent = 'Modo Día';
+  } else {
+    document.body.classList.remove('night-mode');
+    themeToggle.textContent = 'Modo Noche';
+  }
+}
+
+// Evento al hacer clic en el botón
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.body.classList.contains('night-mode') ? 'day' : 'night';
+  localStorage.setItem('theme', currentTheme);
+  applyTheme(currentTheme);
+});
+
+// Cargar el tema guardado al inicio
+const savedTheme = localStorage.getItem('theme') || 'day';
+applyTheme(savedTheme);
+
