@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
   cerrarSesion.addEventListener("click", function(event) {
     event.preventDefault(); // Evita la acción predeterminada del enlace
 
-    sessionStorage.removeItem("usuario"); // Elimina el usuario del localStorage
+    sessionStorage.removeItem("usuario"); // Elimina el usuario del sessionStorage
     sessionStorage.setItem("sesionActiva", "false");
     
     window.location.href = "login.html"; // Redirige a la página de inicio de sesión
