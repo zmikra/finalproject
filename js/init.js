@@ -47,5 +47,21 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
 }else {
   // Mostrar el nombre de usuario en la esquina superior derecha
   var usuario = sessionStorage.getItem("usuario");
-  document.getElementById("nombreUsuario").textContent =  usuario;
+  document.querySelector(".dropdown-toggle").textContent =  usuario;
 }
+
+// Entrega 5 Punto 2
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Botón de "Cerrar sesión"
+  const cerrarSesion = document.getElementById("cerrarSesion");
+
+  cerrarSesion.addEventListener("click", function(event) {
+    event.preventDefault(); // Evita la acción predeterminada del enlace
+
+    sessionStorage.removeItem("usuario"); // Elimina el usuario del localStorage
+    sessionStorage.setItem("sesionActiva", "false");
+    
+    window.location.href = "login.html"; // Redirige a la página de inicio de sesión
+  });
+});
