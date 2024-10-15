@@ -9,11 +9,11 @@ const EXT_TYPE = ".json";
 
 let showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
-}
+};
 
 let hideSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "none";
-}
+};
 
 let getJSONData = function(url) {
     let result = {};
@@ -38,40 +38,37 @@ let getJSONData = function(url) {
             hideSpinner();
             return result;
         });
-}
+};
 
 // Verificar si la sesión está activa
 if (sessionStorage.getItem("sesionActiva") !== "true") {
-    // Redireccionar a login.html si no está autenticado
     window.location.href = "login.html";
 } else {
-    // Mostrar el nombre de usuario en la esquina superior derecha
     var usuario = sessionStorage.getItem("usuario");
     document.getElementById("nombreUsuario").textContent = usuario;
 }
 
-// Modo oscuro
-const themeToggle = document.getElementById('themeToggle');
-
-function applyTheme(theme) {
-    if (theme === 'night') {
-        document.body.classList.add('night-mode');
-        themeToggle.textContent = 'Modo Día';
-    } else {
-        document.body.classList.remove('night-mode');
-        themeToggle.textContent = 'Modo Noche';
-    }
-}
-
-// Evento al hacer clic en el botón
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.body.classList.contains('night-mode') ? 'day' : 'night';
-    localStorage.setItem('theme', currentTheme);
-    applyTheme(currentTheme);
-});
-
-// Cargar el tema guardado al inicio
+// cargo el tema que se guardó al inicio
 const savedTheme = localStorage.getItem('theme') || 'day';
 applyTheme(savedTheme);
 
+// aplico el tema 
+function applyTheme(theme) {
+    if (theme === 'night') {
+        document.body.classList.add('night-mode');
+        document.getElementById('themeDark').checked = true;
+    } else {
+        document.body.classList.remove('night-mode');
+        document.getElementById('themeLight').checked = true;
+    }
+}
 
+// evento para cambiar de tema al seleccionar el radiobutton correspondiente
+const themeRadios = document.querySelectorAll('input[name="theme"]');
+for (let i = 0; i < themeRadios.length; i++) {
+    themeRadios[i].addEventListener('change', (event) => {
+        const theme = event.target.value;
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+    });
+}

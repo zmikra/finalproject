@@ -125,8 +125,7 @@ a.custom-card:hover {
     margin: 0 auto;
     padding: 20px;
 }
-
-/* Estilos para modo noche */
+/*ESTILOS MODO OSCURO*/
 body.night-mode {
     background-color: #333;
     color: #fff;
@@ -144,7 +143,9 @@ body.night-mode .card {
 body.night-mode .navbar {
     background-color: #222;
 }
-body.night-mode .main{
-  background-color: #333;
+
+.form-check-label {
+    color: white; 
 }
+
 
