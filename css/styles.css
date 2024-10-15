@@ -194,6 +194,7 @@ a.custom-card:hover {
   margin: 0 auto;
   padding: 20px;
 }
+/*darkmodelightmode*/
 body.night-mode {
   background-color: #333;
   color: #fff;
