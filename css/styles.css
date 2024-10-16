@@ -196,3 +196,48 @@ a.custom-card:hover {
 }
 
 
+/* Estilo para el botón del usuario en la barra de navegación */
+.navbar .dropdown-toggle {
+  background-color: #070707; /* Color de fondo naranja */
+  color: white; /* Texto blanco */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px; /* Bordes redondeados */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Cambiar el color cuando el usuario pasa el mouse */
+.navbar .dropdown-toggle:hover {
+  background-color: #070707; /* Un tono más oscuro de naranja */
+}
+
+/* Estilo para el contenido del menú desplegable */
+.navbar .dropdown-menu {
+  background-color: rgb(44, 44, 44); /* Fondo blanco */
+  border: 2px solid #070707; /* Borde naranja */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo para los enlaces dentro del menú */
+.navbar .dropdown-menu .dropdown-item {
+  color: #333;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+/* Cambiar el color de fondo y texto cuando el usuario hace hover */
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #070707; /* Fondo naranja al pasar el mouse */
+  color: white; /* Texto blanco */
+}
+
+/* Ajustar el tamaño del menú desplegable */
+.navbar .dropdown-menu {
+  min-width: 200px;
+}
+
+
+

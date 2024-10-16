@@ -1,0 +1,42 @@
+/* Estilo para el botón del usuario en la barra de navegación */
+.navbar .dropdown-toggle {
+    background-color: #212529; 
+    color: white; 
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el contenido del menú desplegable */
+.navbar .dropdown-menu {
+    background-color: rgb(44, 42, 42); 
+    border: 2px solid #000000; 
+    border-radius: 5px; 
+}
+
+/* Estilo para los enlaces dentro del menú */
+.navbar .dropdown-menu .dropdown-item {
+    color: #ffffff;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambia el color de fondo y texto cuando el usuario hace hover */
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #0a0a0a; 
+    color: white; 
+}
+
+/* Ajusta el tamaño del menú desplegable */
+.navbar .dropdown-menu {
+    min-width: 200px;
+}
+
+/* Alineación vertical de todos los elementos dentro de la barra de navegación */
+.navbar-nav {
+    align-items: center; 
+}
+
