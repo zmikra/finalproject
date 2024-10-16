@@ -48,6 +48,7 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
     document.getElementById("nombreUsuario").textContent = usuario;
 }
 
+//DARKMODE  
 // cargo el tema que se guardó al inicio
 const savedTheme = localStorage.getItem('theme') || 'day';
 applyTheme(savedTheme);

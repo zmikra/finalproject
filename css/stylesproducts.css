@@ -48,6 +48,7 @@
   
   .productPriceSold {
     text-align: right;
+    color: black
   }
   
   .productPriceSold .productPrice {
@@ -98,3 +99,21 @@
       margin-top: 10px;
     }
   }
+/*darkmode*/
+
+body.night-mode .productItem{
+  display: flex;
+  border: 2px solid #222;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: #969696;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+.form-check-label {
+    color: white; 
+}
+
+body.night-mode .productItem:hover {
+  background-color: whitesmoke; 
+}

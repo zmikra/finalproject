@@ -125,6 +125,7 @@ a.custom-card:hover {
     margin: 0 auto;
     padding: 20px;
 }
+
 /*ESTILOS MODO OSCURO*/
 body.night-mode {
     background-color: #333;
@@ -148,4 +149,17 @@ body.night-mode .navbar {
     color: white; 
 }
 
+body.night-mode .list-group-item{
+    border: 2px solid #222;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: #969696;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    color: rgb(0, 0, 0);
+  }
 
+body.night-mode .list-group-item:hover{
+    background-color: whitesmoke;
+}
+  
