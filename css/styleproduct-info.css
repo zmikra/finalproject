@@ -72,10 +72,11 @@
     color: #666; 
 }
 
-.star-container {
+.star-container{
     display: flex; 
     justify-content: right; /* flex-end; Alinear estrellas a la derecha */
     margin-left: auto; /* Empujar las estrellas a la derecha */
+    
 }
 
 .productDetailSection {
@@ -253,4 +254,10 @@ body.night-mode .list-group-container{
 }
 body.night-mode .list-group-item{
     border: 2px solid #969696;
+}
+.fa.checked{
+    color: orange;
+}
+.fa{
+    color: lightgrey;
 }
