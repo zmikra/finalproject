@@ -85,7 +85,8 @@
 
 .list-group-container {
     background-color: #fff;
-    border: 2px solid orange; /* Bordes naranjas */ 
+    border: 2px solid orange; /* Bordes naranjas */
+    color: #000; 
     padding: 0px;
     border-radius: 10px;
     margin-top: 20px;
@@ -118,9 +119,7 @@
     display: flex;
     gap: 5px;
 }
-.star.checked{
-    color: orange;
-}
+
 .star {
     font-size: 30px;
     color: lightgray;
