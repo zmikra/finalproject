@@ -21,6 +21,7 @@
     left: 50%;
     transform: translateX(-50%);
     min-width: 200px;
+    color:lightgray;
 }
 
 /* Estilo para los enlaces dentro del menú */
