@@ -65,12 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = "login.html"; // Redirige a la página de inicio de sesión
   });
 });
-if (sessionStorage.getItem("sesionActiva") !== "true") {
-    window.location.href = "login.html";
-} else {
-    var usuario = sessionStorage.getItem("usuario");
-    document.getElementById("nombreUsuario").textContent = usuario;
-}
+
 /*
 //darkmode
 // Aplicar tema
