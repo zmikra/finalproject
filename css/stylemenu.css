@@ -20,6 +20,7 @@
     position: absolute;
     right: 0; /* Alinea el menú con el botón */
     min-width: 200px;
+    color:lightgray;
 }
 
 /* Estilo para los enlaces dentro del menú */
