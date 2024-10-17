@@ -47,29 +47,22 @@ if (sessionStorage.getItem("sesionActiva") !== "true") {
     var usuario = sessionStorage.getItem("usuario");
     document.getElementById("nombreUsuario").textContent = usuario;
 }
-
-//DARKMODE  
-// cargo el tema que se guardó al inicio
-const savedTheme = localStorage.getItem('theme') || 'day';
-applyTheme(savedTheme);
-
-// aplico el tema 
+/*
+//darkmode
+// Aplicar tema
 function applyTheme(theme) {
     if (theme === 'night') {
         document.body.classList.add('night-mode');
         document.getElementById('themeDark').checked = true;
     } else {
         document.body.classList.remove('night-mode');
-        document.getElementById('themeLight').checked = true;
+        document.getElementById('themeDark').checked = false; // Cambié a checked
     }
 }
 
-// evento para cambiar de tema al seleccionar el radiobutton correspondiente
-const themeRadios = document.querySelectorAll('input[name="theme"]');
-for (let i = 0; i < themeRadios.length; i++) {
-    themeRadios[i].addEventListener('change', (event) => {
-        const theme = event.target.value;
-        localStorage.setItem('theme', theme);
-        applyTheme(theme);
-    });
-}
+// Evento para cambiar de tema al hacer clic en el checkbox
+document.getElementById('themeDark').addEventListener('change', function() {
+    const theme = this.checked ? 'night' : 'day';
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+});*/

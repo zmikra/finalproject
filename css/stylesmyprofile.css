@@ -7,7 +7,6 @@
 main {
     font-family: 'Arial', sans-serif;
     background-color: white;
-    
 }
 
 .profile-container {
@@ -36,14 +35,12 @@ h2 {
     padding: 20px;
 }
 
-#formulario{
+#formulario {
     display: grid;
     grid-template-columns: 150px 1fr;
     grid-gap: 10px 20px;
-    align-items: letf;
+    align-items: left;
 }
-
-
 
 label {
     font-size: 16px;
@@ -53,12 +50,13 @@ label {
     grid-column: 1 / 2;
 }
 
+/* Estilos para campos de texto */
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
     grid-column: 2 / 3;
     padding: 10px;
-    border: 1px solid orange;
+    border: 1px solid orange; /* Borde naranja en modo claro */
     border-radius: 5px;
     outline: none;
 }
@@ -67,14 +65,6 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus {
     border-color: orange;
-}
-
-.night-mode {
-    grid-column: span 2;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
 }
 
 input[type="checkbox"] {
@@ -123,4 +113,24 @@ input[type="checkbox"]::before {
 
 .save-btn:hover {
     background-color: darkorange;
+}
+
+/* DARKMODE */
+
+body.night-mode input[type="text"],
+body.night-mode input[type="email"],
+body.night-mode input[type="tel"] {
+    border: 1px solid black; /* Borde negro en modo oscuro */
+}
+
+body.night-mode main {
+    background-color: #333;
+}
+
+body.night-mode label { 
+    color: whitesmoke;
+}
+
+body.night-mode h2 {
+    color: whitesmoke;
 }
