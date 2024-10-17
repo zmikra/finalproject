@@ -9,6 +9,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/stylemenu.css" rel="stylesheet">
+  <link href="css/stylesmyprofile.css" rel="stylesheet">
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -46,7 +47,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <div class="nav-link dropdown"> <!-- Nombre de usuario en la esquino superior derecha y menú desplegable -->
+            <div class="nav-link dropdown" id="nombreUsuario"> <!-- Nombre de usuario en la esquino superior derecha y menú desplegable -->
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 NombreUsuario
               </button>
@@ -62,9 +63,41 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2>Mi Perfil</h2>
+      </div>
+      <div class="profile-line"></div>
+      <div class="profile-form">
+        <div id="formulario">
+          <label for="profile-pic">Foto de perfil:</label>
+          <div class="pic-container">
+            <img id="avatar" src="default-avatar.png" alt="Avatar" class="avatar">
+            <label for="profile-pic" class="upload-btn">
+              <span>Cambiar foto</span>
+            </label>
+            <input type="file" id="profile-pic" accept="image/*" style="display: none;">
+          </div>
+
+          <label for="first-name">*Nombre:</label>
+          <input type="text" id="nombre" name="first-name" required>
+
+          <label for="middle-name">Segundo nombre:</label>
+          <input type="text" id="segundoNombre" name="middle-name">
+
+          <label for="last-name">*Apellido:</label>
+          <input type="text" id="apellido" name="last-name" required>
+
+          <label for="email">*E-mail:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Teléfono de contacto:</label>
+          <input type="tel" id="telefono" name="phone">
+
+          <label for="themeDark">Modo nocturno:</label>
+          <input type="checkbox" id="themeDark" name="theme" value="night">
+          <button class="save-btn" id="guardarBtn" onclick="guardarDatos()">Guardar Datos</button>
+        </div>
       </div>
     </div>
   </main>
@@ -80,5 +113,6 @@
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
+
 
 </html>

@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: auto 1px 1fr; /* Tres columnas: título, línea, formulario */
+    width: 60%;
+    margin: 40px auto;
+}
+
+.profile-header {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 34px;
+    color: #000000;
+    padding-right: 20px;
+}
+
+.profile-line {
+    width: 3px;
+    background-color: orange;
+}
+
+.profile-form {
+    padding: 20px;
+}
+
+#formulario {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-gap: 10px 20px;
+    align-items: left;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: end;
+    color: #000000;
+    grid-column: 1 / 2;
+}
+
+/* Estilos para campos de texto */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    grid-column: 2 / 3;
+    padding: 10px;
+    border: 1px solid orange; /* Borde naranja en modo claro */
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    border-color: orange;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    background-color: orange;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s ease;
+}
+
+.save-btn {
+    grid-column: span 2;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 150px;
+    justify-self: end;
+}
+
+.save-btn:hover {
+    background-color: darkorange;
+}
+
+/* DARKMODE */
+
+body.night-mode input[type="text"],
+body.night-mode input[type="email"],
+body.night-mode input[type="tel"] {
+    border: 1px solid black; /* Borde negro en modo oscuro */
+}
+
+body.night-mode main {
+    background-color: #333;
+}
+
+body.night-mode label { 
+    color: whitesmoke;
+}
+
+body.night-mode h2 {
+    color: whitesmoke;
+}
+body.night-mode .avatar{
+    border: 3px solid black;
+}
+/*estilos para el botón de "examinar"*/
+.upload-btn {
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 150px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.upload-btn:hover {
+    background-color: darkorange; 
+}
+/*estilos para la imagen a cargar*/
+.avatar{
+    width: 10em;
+    height: auto;
+    border: 3px solid orange;
+    border-radius: 10px;
+}
+
