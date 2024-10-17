@@ -41,12 +41,12 @@ let getJSONData = function(url){
 }
 
 // Verificar si la sesión está activa
-if (sessionStorage.getItem("sesionActiva") !== "true") {
+if (localStorage.getItem("sesionActiva") !== "true") {
   // Redireccionar a login.html si no está autenticado
   window.location.href = "login.html";
 }else {
   // Mostrar el nombre de usuario en la esquina superior derecha
-  var usuario = sessionStorage.getItem("usuario");
+  var usuario = localStorage.getItem("usuario");
   document.querySelector(".dropdown-toggle").textContent =  usuario;
 }
 
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
   cerrarSesion.addEventListener("click", function(event) {
     event.preventDefault(); // Evita la acción predeterminada del enlace
 
-    sessionStorage.removeItem("usuario"); // Elimina el usuario del sessionStorage
-    sessionStorage.setItem("sesionActiva", "false");
+    localStorage.removeItem("usuario"); // Elimina el usuario del sessionStorage
+    localStorage.setItem("sesionActiva", "false");
     
     window.location.href = "login.html"; // Redirige a la página de inicio de sesión
   });

@@ -8,6 +8,8 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center;
+    width: 150px;
 }
 
 /* Estilo para el contenido del menú desplegable */
@@ -15,6 +17,10 @@
     background-color: rgb(44, 42, 42); 
     border: 2px solid #000000; 
     border-radius: 5px; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
 }
 
 /* Estilo para los enlaces dentro del menú */
@@ -28,11 +34,6 @@
 .navbar .dropdown-menu .dropdown-item:hover {
     background-color: #0a0a0a; 
     color: white; 
-}
-
-/* Ajusta el tamaño del menú desplegable */
-.navbar .dropdown-menu {
-    min-width: 200px;
 }
 
 /* Alineación vertical de todos los elementos dentro de la barra de navegación */
