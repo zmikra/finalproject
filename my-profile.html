@@ -30,8 +30,6 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <div class="form-check form-check-inline">
-    </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,8 +46,8 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nombreUsuario"></a> <!-- Nombre de usuario en la esquino superior derecha-->
-        </li>
+            <a class="nav-link" id="nombreUsuario"></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -57,50 +55,41 @@
   <main>
     <div class="profile-container">
       <div class="profile-header">
-          <h2>Mi Perfil</h2>
+        <h2>Mi Perfil</h2>
       </div>
-      <div class="profile-line"></div> <!-- Línea divisoria -->
+      <div class="profile-line"></div>
       <div class="profile-form">
-          <div id="formulario">
-              <!-- <div class="profile-pic">
-                  <label for="profile-pic">Foto de perfil:</label>
-                  <div class="pic-container">
-                      <img src="default-avatar.png" alt="Avatar" class="avatar">
-                      <label for="profile-pic" class="upload-btn">
-                          <img src="camera-icon.png" alt="Upload">
-                      </label>
-                      <input type="file" id="profile-pic" accept="image/*" style="display: none;">
-                  </div>
-              </div> --> 
-              <label for="profile-pic">Foto de perfil:</label>
-              <p></p>
-              <label for="first-name">*Nombre:</label>
-              <input type="text" id="nombre" name="first-name" required>
+        <div id="formulario">
+          <label for="profile-pic">Foto de perfil:</label>
+          <div class="pic-container">
+            <img id="avatar" src="default-avatar.png" alt="Avatar" class="avatar">
+            <label for="profile-pic" class="upload-btn">
+              <span>Examinar</span>
+            </label>
+            <input type="file" id="profile-pic" accept="image/*" style="display: none;">
+          </div>
 
-              <label for="middle-name">Segundo nombre:</label>
-              <input type="text" id="segundoNombre" name="middle-name">
+          <label for="first-name">*Nombre:</label>
+          <input type="text" id="nombre" name="first-name" required>
 
-              <label for="last-name">*Apellido:</label>
-              <input type="text" id="apellido" name="last-name" required>
+          <label for="middle-name">Segundo nombre:</label>
+          <input type="text" id="segundoNombre" name="middle-name">
 
-              <label for="email">*E-mail:</label>
-              <input type="email" id="email" name="email" required>
+          <label for="last-name">*Apellido:</label>
+          <input type="text" id="apellido" name="last-name" required>
 
-              <label for="phone">Teléfono de contacto:</label>
-              <input type="tel" id="telefono" name="phone">
+          <label for="email">*E-mail:</label>
+          <input type="email" id="email" name="email" required>
 
-              <label for="themeDark">Modo nocturno:</label>
-              <input type="checkbox" id="themeDark" name="theme" value="night">
-              <button class="save-btn" id="guardarBtn" onclick="guardarDatos()">Guardar Datos</button>
-            </div>
+          <label for="phone">Teléfono de contacto:</label>
+          <input type="tel" id="telefono" name="phone">
+
+          <label for="themeDark">Modo nocturno:</label>
+          <input type="checkbox" id="themeDark" name="theme" value="night">
+          <button class="save-btn" id="guardarBtn" onclick="guardarDatos()">Guardar Datos</button>
+        </div>
       </div>
-  </div>
-
-    <!-- <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div> -->
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -114,5 +103,6 @@
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
+
 
 </html>

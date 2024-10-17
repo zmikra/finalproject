@@ -134,3 +134,31 @@ body.night-mode label {
 body.night-mode h2 {
     color: whitesmoke;
 }
+body.night-mode .avatar{
+    border: 3px solid black;
+}
+/*estilos para el botón de "examinar"*/
+.upload-btn {
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.upload-btn:hover {
+    background-color: darkorange; 
+}
+/*estilos para la imagen a cargar*/
+.avatar{
+    width: 10em;
+    height: auto;
+    border: 3px solid orange;
+    border-radius: 10px;
+}
+

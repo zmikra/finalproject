@@ -1,5 +1,5 @@
 window.onload = function() {
-    // cargamos el tema guardado 
+    // Cargar el tema guardado 
     const savedTheme = localStorage.getItem('theme') || 'day';
     applyTheme(savedTheme);
 
@@ -17,24 +17,44 @@ window.onload = function() {
         document.getElementById("segundoNombre").value = sessionStorage.getItem("segundoNombre") || "";
         document.getElementById("apellido").value = sessionStorage.getItem("apellido") || "";
         document.getElementById("telefono").value = sessionStorage.getItem("telefono") || "";
+
+        // Cargar la foto de perfil
+        const avatar = document.getElementById("avatar");
+        const savedAvatar = localStorage.getItem("avatar");
+        if (savedAvatar) {
+            avatar.src = savedAvatar;
+        }
     }
+
+    // Evento para manejar la carga de la foto de perfil
+    document.getElementById("profile-pic").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Mostrar la imagen cargada
+                document.getElementById("avatar").src = e.target.result;
+                // Guardar la imagen en localStorage
+                localStorage.setItem("avatar", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 };
 
 function applyTheme(theme) {
     if (theme === 'night') {
         document.body.classList.add('night-mode');
         const checkbox = document.getElementById('themeDark');
-        if (checkbox) checkbox.checked = true; /*si el tema es night, añade la clase nightmode y 
-        si el checkbox está marcado, retorna true y cambia a darkmode*/
+        if (checkbox) checkbox.checked = true;
     } else {
         document.body.classList.remove('night-mode');
         const checkbox = document.getElementById('themeDark');
-        if (checkbox) checkbox.checked = false; /*remueve la clase nightmode y si el checkbox está marcado
-        devuelve false y nos muestra nuevamente el lightmode*/
+        if (checkbox) checkbox.checked = false;
     }
 }
 
-// evento de clic que hace el cambio de tema 
+// Evento de clic que hace el cambio de tema 
 document.addEventListener('DOMContentLoaded', function() {
     const checkbox = document.getElementById('themeDark');
     if (checkbox) {
@@ -68,4 +88,5 @@ function guardarDatos() {
 
     alert("Datos guardados correctamente.");
 }
+
 
