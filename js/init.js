@@ -40,48 +40,28 @@ let getJSONData = function(url) {
         });
 };
 
-// Verificar si la sesión está activa
-if (localStorage.getItem("sesionActiva") !== "true") {
-  // Redireccionar a login.html si no está autenticado
-  window.location.href = "login.html";
-}else {
-  // Mostrar el nombre de usuario en la esquina superior derecha
-  var usuario = localStorage.getItem("usuario");
-  document.querySelector(".dropdown-toggle").textContent =  usuario;
-}
-
-// Entrega 5 Punto 2
-
 document.addEventListener("DOMContentLoaded", function() {
-  // Botón de "Cerrar sesión"
-  const cerrarSesion = document.getElementById("cerrarSesion");
 
-  cerrarSesion.addEventListener("click", function(event) {
-    event.preventDefault(); // Evita la acción predeterminada del enlace
+    // Verificar si la sesión está activa
+    if (sessionStorage.getItem("sesionActiva") !== "true") {
+        alert("Debes iniciar sesión para acceder a tu perfil.");
+        window.location.href = "login.html";  // Redireccionar a login.html si no está autenticado
+    } else {  
+        var usuario = sessionStorage.getItem("usuario");
+        document.querySelector(".dropdown-toggle").textContent = usuario; // Mostrar el nombre de usuario en la esquina superior derecha
+    }
 
-    localStorage.removeItem("usuario"); // Elimina el usuario del sessionStorage
-    localStorage.setItem("sesionActiva", "false");
-    
-    window.location.href = "login.html"; // Redirige a la página de inicio de sesión
-  });
+    // Botón de "Cerrar sesión"
+    const cerrarSesion = document.getElementById("cerrarSesion");
+
+    cerrarSesion.addEventListener("click", function(event) {
+        event.preventDefault();  // Evita la acción predeterminada del enlace
+
+        sessionStorage.removeItem("usuario");  // Elimina el usuario de sessionStorage
+        sessionStorage.setItem("sesionActiva", "false");  // Cambia el estado de la sesión
+
+        window.location.href = "login.html";  // Redirige a la página de inicio de sesión
+    });
 });
 
-/*
-//darkmode
-// Aplicar tema
-function applyTheme(theme) {
-    if (theme === 'night') {
-        document.body.classList.add('night-mode');
-        document.getElementById('themeDark').checked = true;
-    } else {
-        document.body.classList.remove('night-mode');
-        document.getElementById('themeDark').checked = false; // Cambié a checked
-    }
-}
 
-// Evento para cambiar de tema al hacer clic en el checkbox
-document.getElementById('themeDark').addEventListener('change', function() {
-    const theme = this.checked ? 'night' : 'day';
-    localStorage.setItem('theme', theme);
-    applyTheme(theme);
-});*/

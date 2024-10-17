@@ -4,10 +4,7 @@ window.onload = function() {
     applyTheme(savedTheme);
 
     // Verifica si la sesión está activa
-    if (sessionStorage.getItem("sesionActiva") !== "true") {
-        alert("Debes iniciar sesión para acceder a tu perfil.");
-        window.location.href = "login.html"; // Redirigir a la página de login
-    } else {
+    if (sessionStorage.getItem("sesionActiva") === "true") {
         // Si el usuario está logueado, carga su información
         var usuarioEmail = sessionStorage.getItem("usuario"); // Obtener el email del usuario
         document.getElementById("email").value = usuarioEmail; // Mostrar el email en el campo correspondiente

@@ -7,7 +7,6 @@ function validarFormulario() {
         alert("Por favor, complete ambos campos.");
     } else {
         sessionStorage.setItem("sesionActiva", "true"); // Guardar la sesión al autenticarse
-
         sessionStorage.setItem("usuario", usuario); // Guardar el nombre de usuario
         window.location.href = "index.html";  
     }
