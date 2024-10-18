@@ -1,26 +1,40 @@
-/* Estilo para el botón del usuario en la barra de navegación */
+/* Estilo general para los enlaces del navbar (incluyendo el nombre del usuario) */
+.navbar .nav-link, 
 .navbar .dropdown-toggle {
-    background-color: #212529; 
-    color: white; 
-    padding: 10px 15px;
+    color: #6c757d !important;  
+    font-family: 'Raleway', sans-serif; 
+    font-weight: 400; 
+    font-size: 18px; 
+    background-color: transparent !important; 
+    padding: 10px 15px; 
     border: none;
-    border-radius: 5px; 
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    width: 150px;
+    transition: color 0.3s ease; 
+    text-transform: none; 
+    line-height: 1.5; 
+}
+
+/* Cambia el color al hacer hover para ambos (enlaces y dropdown-toggle) */
+.navbar .nav-link:hover, 
+.navbar .dropdown-toggle:hover {
+    color: white !important; 
+}
+
+/* Mantener el fondo del navbar */
+.navbar {
+    background-color: #212529; 
 }
 
 /* Estilo para el contenido del menú desplegable */
 .navbar .dropdown-menu {
     background-color: rgb(44, 42, 42); 
     border: 2px solid #000000; 
-    border-radius: 5px; 
+    border-radius: 5px;
     position: absolute;
-    right: 0; /* Alinea el menú con el botón */
+    left: 50%;
+    transform: translateX(-50%);
     min-width: 200px;
-    color:lightgray;
+    color: lightgray;
 }
 
 /* Estilo para los enlaces dentro del menú */
@@ -30,14 +44,13 @@
     transition: background-color 0.3s ease;
 }
 
-/* Cambia el color de fondo y texto cuando el usuario hace hover */
+/* Cambia el color de fondo y texto cuando el usuario hace hover en los ítems */
 .navbar .dropdown-menu .dropdown-item:hover {
     background-color: #0a0a0a; 
     color: white; 
 }
 
-/* Alineación vertical de todos los elementos dentro de la barra de navegación */
+/* Centra todos los títulos del header */
 .navbar-nav {
     align-items: center; 
 }
-
