@@ -149,6 +149,7 @@ body.night-mode .avatar{
     width: 150px;
     text-align: center;
     margin-left: 30px;
+    font-weight: lighter;
 }
 
 .upload-btn:hover {
