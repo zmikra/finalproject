@@ -18,8 +18,11 @@ window.onload = function() {
         // Cargar la foto de perfil
         const avatar = document.getElementById("avatar");
         const savedAvatar = localStorage.getItem("avatar");
-        if (savedAvatar) {
+        if (savedAvatar) { // Cargar el avatar desde localStorage si existe
             avatar.src = savedAvatar;
+        }else {
+            avatar.src = "img/img_perfil.png";  // Cargar la imagen por defecto si no hay avatar guardado
+            console.log('Cargando avatar por defecto.');
         }
     }
 
