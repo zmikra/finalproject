@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sessionStorage.removeItem("usuario");  // Elimina el usuario de sessionStorage
         sessionStorage.setItem("sesionActiva", "false");  // Cambia el estado de la sesión
         localStorage.clear();  // Limpia todo el localStorage
+        sessionStorage.clear();
         window.location.href = "login.html";  // Redirige a la página de inicio de sesión
     });
 });
