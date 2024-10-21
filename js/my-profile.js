@@ -10,10 +10,10 @@ window.onload = function() {
         document.getElementById("email").value = usuarioEmail; // Mostrar el email en el campo correspondiente
 
         // Cargar datos previamente guardados en sessionStorage
-        document.getElementById("nombre").value = sessionStorage.getItem("nombre") || "";
-        document.getElementById("segundoNombre").value = sessionStorage.getItem("segundoNombre") || "";
-        document.getElementById("apellido").value = sessionStorage.getItem("apellido") || "";
-        document.getElementById("telefono").value = sessionStorage.getItem("telefono") || "";
+        document.getElementById("nombre").value = localStorage.getItem("nombre") || "";
+        document.getElementById("segundoNombre").value = localStorage.getItem("segundoNombre") || "";
+        document.getElementById("apellido").value = localStorage.getItem("apellido") || "";
+        document.getElementById("telefono").value = localStorage.getItem("telefono") || "";
 
         // Cargar la foto de perfil
         const avatar = document.getElementById("avatar");
@@ -81,10 +81,10 @@ function guardarDatos() {
     }
 
     // Guardar los datos en el almacenamiento local
-    sessionStorage.setItem("nombre", nombre);
-    sessionStorage.setItem("segundoNombre", segundoNombre);
-    sessionStorage.setItem("apellido", apellido);
-    sessionStorage.setItem("telefono", telefono);
+    localStorage.setItem("nombre", nombre);
+    localStorage.setItem("segundoNombre", segundoNombre);
+    localStorage.setItem("apellido", apellido);
+    localStorage.setItem("telefono", telefono);
 
     alert("Datos guardados correctamente.");
 }
