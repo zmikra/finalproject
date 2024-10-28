@@ -15,8 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="productDetailSection">
                             <p class="productPrice">Precio: $${product.cost}</p>
                         </div>
-                        <div class="productDetailSection">
+                        <div class="divContainer">
+                        <div class="productDetailSectionS">
                             <p class="productSoldCount">Vendidos: ${product.soldCount}</p>
+                        </div>
+                        <div class="cartBtn">
+                            <button id="setCart">Añadir al carrito</button>
+                        </div>
                         </div>
                     </div>
                     <div class="col-12 productImage">
