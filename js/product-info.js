@@ -43,6 +43,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 document.getElementById("product-info").innerHTML = productHTML;
             
+                /* Entrega 6, punto 2, botón "añadir al carrito"*/
+                //añado evento de clic al botón 
+                document.getElementById("setCart").addEventListener("click", function() {
+                    //intento tomar los datos del localstorage, si no hay datos anteriores crea un array nuevo
+                    let cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+                    let article = {
+                        id: productID,
+                        name: product.name,
+                        count: 1,
+                        cost: product.cost,
+                        currency: "$" 
+                    };
+
+                    // verifico si el producto ya está en el carrito para no repetirlo
+                    const existingArticle = cart.articles.find(item => item.id === article.id);
+                    if (existingArticle) {
+                        existingArticle.count += 1; //si ya tengo el mismo artículo, le suma uno a count
+                    } else {
+                        cart.articles.push(article); //si no tengo artículo con ese id, lo agrega
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart)); //guarda el array en localstorage
+                    alert("¡Tu producto se ha añadido al carrito!"); // alerta de éxito
+                });
+
                 // Carga los productos relacionados
                 showRelatedProducts(product.relatedProducts);
 
