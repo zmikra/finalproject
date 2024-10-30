@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     //intento tomar los datos del localstorage, si no hay datos anteriores crea un array nuevo
                     let cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
                     let article = {
+                        image : product.images[0],
                         id: productID,
                         name: product.name,
                         count: 1,

@@ -1,8 +1,111 @@
-.empty-cart {
+#cart-container {
+    width: 60%;
+    margin: auto;
+    border: 2px solid #ffa500;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+    
+#cart-container h2 {
+    text-align: left;
+    font-size: 35px;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ffa500; 
+}
+
+.product {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    font-size: 1.2em;
-    color: #aca4a4;
+    align-items: center; 
+    justify-content: space-between;
+    border-bottom: 1px solid #ffa500;
+    padding: 10px 0;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+}
+
+.product img {
+    width: 30%;
+    height: 30%;
+    border-radius: 8px;
+}
+    
+.product h5 {
+    font-size: 120%;
+    color: #292828;
+    margin: 0;
+    flex: 1;
+    text-align: left;
+}
+    
+.product p {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #333333;
+}
+    
+.product label {
+    font-size: 95%;
+    color: #333333;
+    margin-top: 5px;
+}
+    
+.product input[type="number"] {
+    width: 50px;
+    margin-left: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    border-color: #ffa500;
+}
+    
+.product:last-child {
+    border-bottom: none;
+}
+
+.remove-button {
+    color: rgb(8, 8, 8); 
+    border-color: #ffa500; 
+    border-radius: 4px; 
+    padding: 5px; 
+    cursor: pointer; 
+    font-size: 12px; 
+    transition: background-color 0.3s; 
+    margin-left: 8px; 
+    background-color: #ffffff;
+    text-align: center;
+    border-width: 1px;
+    height: 35px;
+}
+
+.remove-button:hover {
+    background-color: #ffa500; 
+}
+    
+.empty-cart {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin: 20px 0;
+}
+    
+.subtotal {
+    text-align: right;
+    font-weight: bold;
+    font-size: 95%;
+    color: #333333;
+    border-top: 1px solid #ffa500;
+}
+
+.total {
+    text-align: right;
+    margin-top: 18px;
 }
