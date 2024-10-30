@@ -17,6 +17,7 @@ function loadCart() {
         total += articleSubtotal;
 
         cartContainer.innerHTML += `
+        
             <div class="product">
                 <img src="${article.image}" alt="${article.name}" width="100">
                 <div class="product-details">
@@ -30,6 +31,7 @@ function loadCart() {
                 </div>
                 <p id="subtotal-${article.id}">Precio: ${article.currency} ${articleSubtotal}</p>
             </div>
+        
         `;
 
     });

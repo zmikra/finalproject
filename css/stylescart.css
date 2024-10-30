@@ -1,14 +1,15 @@
-#cart-container {
+.container2 {
     width: 60%;
-    margin: auto;
     border: 2px solid #ffa500;
     border-radius: 8px;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 3.5em;
 }
     
-#cart-container h2 {
+.container2 h2 {
     text-align: left;
     font-size: 35px;
     color: #1f1f1f;
@@ -35,6 +36,7 @@
     width: 30%;
     height: 30%;
     border-radius: 8px;
+    margin-right: 2em;
 }
     
 .product h5 {
@@ -49,6 +51,7 @@
     margin: 0 10px;
     font-size: 14px;
     color: #333333;
+    margin-right: 2em;
 }
     
 .product label {
@@ -80,14 +83,14 @@
     font-size: 12px; 
     transition: background-color 0.3s; 
     margin-left: 8px; 
-    background-color: #ffffff;
+    background-color: #ffa500;
     text-align: center;
     border-width: 1px;
     height: 35px;
 }
 
 .remove-button:hover {
-    background-color: #ffa500; 
+    background-color: darkorange; 
 }
     
 .empty-cart {
@@ -108,4 +111,8 @@
 .total {
     text-align: right;
     margin-top: 18px;
+    color: #333;
+}
+body.night-mode .container2{
+    background-color: #c0c0c0;
 }
