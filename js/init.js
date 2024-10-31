@@ -66,3 +66,30 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+// Función para actualizar el badge con el total de productos
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const badge = document.getElementById("cart-badge");
+
+    if (!badge) {
+        console.log("Badge element not found!");
+        return;
+    }
+
+    // Verifica si el carrito contiene productos y calcula la cantidad total
+    if (cart && cart.articles.length > 0) {
+        const totalProducts = cart.articles.reduce((total, article) => total + article.count, 0);
+        badge.textContent = totalProducts;
+    } else {
+        badge.textContent = 0; // Si no hay productos, muestra 0
+    }
+}
+
+// Llama a `updateCartBadge()` al cargar la página
+updateCartBadge();
+
+// Aquí puedes agregar otras funciones, como `loadCart()` si estás en la página del carrito
+// Por ejemplo, podrías verificar si estás en la página del carrito antes de llamar a `loadCart()`
+if (window.location.pathname.includes("cart.html")) {
+    loadCart();
+}
