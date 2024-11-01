@@ -76,6 +76,6 @@ function loadCart() {
 }
 
 // Llama a `loadCart()` solo si estamos en `cart.html`
-if (window.location.pathname.includes("cart.html")) {
-    loadCart();
-}
+//if (window.location.pathname.includes("cart.html")) {
+ //   loadCart();
+//}
