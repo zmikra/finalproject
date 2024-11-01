@@ -25,10 +25,11 @@ function loadCart() {
                         <label>Cantidad:
                             <input type="number" id="quantity-${article.id}" value="${article.count}" min="1" style="width: 50px; margin-right: 5px;">
                         </label>
-                        <button class="remove-button" data-index="${index}">Eliminar</button>
+                        <button class="remove-button" data-index="${index}">Eliminar</button>              
                     </div>
+                    <p id="precio-${article.id}">Precio: $ ${article.cost}</p>
                 </div>
-                <p id="subtotal-${article.id}">Precio: ${article.currency} ${articleSubtotal}</p>
+                <p id="subtotal-${article.id}">Subtotal: ${article.currency} ${articleSubtotal}</p>
             </div>
         `;
 
@@ -37,7 +38,7 @@ function loadCart() {
     // Mostrar el subtotal
     cartContainer.innerHTML += `
         <div class="total">
-            <h4>Subtotal: $ ${total}</h4>
+            <h4>Importe total: $ ${total}</h4>
         </div>
     `;
 
@@ -47,7 +48,7 @@ function loadCart() {
         quantityInput.addEventListener("input", () => {
             const newQuantity = parseInt(quantityInput.value);
             const newSubtotal = article.cost * newQuantity;
-            document.getElementById(`subtotal-${article.id}`).textContent = `Precio: ${article.currency} ${newSubtotal}`;
+            document.getElementById(`subtotal-${article.id}`).textContent = `Subtotal: ${article.currency} ${newSubtotal}`;
 
             article.count = newQuantity;
             localStorage.setItem("cart", JSON.stringify(cart));
@@ -57,7 +58,7 @@ function loadCart() {
             cart.articles.forEach(article => {
                 updatedTotal += article.cost * article.count;
             });
-            document.querySelector('.total h4').textContent = `Subtotal: $ ${updatedTotal}`;
+            document.querySelector('.total h4').textContent = `Importe total: $ ${updatedTotal}`;
         });
 
         // Agregar evento de eliminar
