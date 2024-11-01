@@ -59,7 +59,7 @@ function loadCart() {
                 updatedTotal += article.cost * article.count;
             });
             document.querySelector('.total h4').textContent = `Importe total: $ ${updatedTotal}`;
-            updateCartBage();
+            updateCartBadge(); // Actualizar el badge
         });
 
         // Agregar evento de eliminar
