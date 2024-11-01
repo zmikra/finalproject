@@ -71,25 +71,19 @@ function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
     const badge = document.getElementById("cart-badge");
 
-    if (!badge) {
-        console.log("Badge element not found!");
-        return;
-    }
+    if (!badge) return; // Sale si el badge no existe
 
-    if (cart.articles.length > 0) {
-        const totalProducts = cart.articles.reduce((total, article) => total + article.count, 0);
-        badge.textContent = totalProducts;
-    } else {
-        badge.textContent = 0; // Si no hay productos, muestra 0
-    }
+    // Calcula el total de productos en el carrito
+    const totalProducts = cart.articles.reduce((total, article) => total + article.count, 0);
+    badge.textContent = totalProducts > 0 ? totalProducts : ''; // Muestra el número o deja vacío si es 0
 }
 
-// Llama a `updateCartBadge()` al cargar la página
+// Llama a `updateCartBadge` al cargar la página
 updateCartBadge();
 
-// Escucha los cambios en localStorage para actualizar el badge en tiempo real
-window.addEventListener("storage", function(event) {
+// Escuchar cambios en `localStorage` para actualizar el badge en todas las pestañas
+window.addEventListener("storage", (event) => {
     if (event.key === "cart") {
-        updateCartBadge();
+        updateCartBadge(); // Actualiza el badge cuando el carrito cambia en otra pestaña
     }
 });

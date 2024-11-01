@@ -52,7 +52,7 @@ function loadCart() {
 
             article.count = newQuantity;
             localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el carrito en localStorage
-            
+            updateCartBadge(); // Actualizar el badge
             // Actualizar el subtotal
             let updatedTotal = 0;
             cart.articles.forEach(article => {
@@ -76,6 +76,6 @@ function loadCart() {
 }
 
 // Llama a `loadCart()` solo si estamos en `cart.html`
-//if (window.location.pathname.includes("cart.html")) {
- //   loadCart();
-//}
+if (window.location.pathname.includes("cart.html")) {
+  loadCart();
+}
