@@ -43,11 +43,11 @@ let getJSONData = function(url) {
 document.addEventListener("DOMContentLoaded", function() {
 
     // Verificar si la sesión está activa
-    if (sessionStorage.getItem("sesionActiva") !== "true") {
+    if (localStorage.getItem("sesionActiva") !== "true") {
         alert("Debes iniciar sesión para acceder a tu perfil.");
         window.location.href = "login.html";  // Redireccionar a login.html si no está autenticado
     } else {  
-        var usuario = sessionStorage.getItem("usuario");
+        var usuario = localStorage.getItem("usuario");
         document.querySelector(".dropdown-toggle").textContent = usuario; // Mostrar el nombre de usuario en la esquina superior derecha
     }
 
@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
     cerrarSesion.addEventListener("click", function(event) {
         event.preventDefault();  // Evita la acción predeterminada del enlace
 
-        sessionStorage.removeItem("usuario");  // Elimina el usuario de sessionStorage
-        sessionStorage.setItem("sesionActiva", "false");  // Cambia el estado de la sesión
+        localStorage.removeItem("usuario");  // Elimina el usuario de sessionStorage
+        localStorage.setItem("sesionActiva", "false");  // Cambia el estado de la sesión
         localStorage.clear();  // Limpia todo el localStorage
         sessionStorage.clear();// Limpia todo el sessionStorage
         window.location.href = "login.html";  // Redirige a la página de inicio de sesión
@@ -66,3 +66,30 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+// Función para actualizar el badge con el total de productos
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const badge = document.getElementById("cart-badge");
+
+    if (!badge) {
+        console.log("Badge element not found!");
+        return;
+    }
+
+    // Verifica si el carrito contiene productos y calcula la cantidad total
+    if (cart && cart.articles.length > 0) {
+        const totalProducts = cart.articles.reduce((total, article) => total + article.count, 0);
+        badge.textContent = totalProducts;
+    } else {
+        badge.textContent = 0; // Si no hay productos, muestra 0
+    }
+}
+
+// Llama a `updateCartBadge()` al cargar la página
+updateCartBadge();
+
+// Aquí puedes agregar otras funciones, como `loadCart()` si estás en la página del carrito
+// Por ejemplo, podrías verificar si estás en la página del carrito antes de llamar a `loadCart()`
+if (window.location.pathname.includes("cart.html")) {
+    loadCart();
+}

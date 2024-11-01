@@ -10,6 +10,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/stylemenu.css" rel="stylesheet">
   <link href="css/stylesmyprofile.css" rel="stylesheet">
+  
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -52,7 +53,11 @@
                 NombreUsuario
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="cart.html" id="miCarrito">Mi carrito</a></li>
+                <li>
+                  <a class="dropdown-item" href="cart.html" id="miCarrito">
+                      Mi carrito <span id="cart-badge" class="badge custom-badge">0</span>
+                  </a>
+                </li>
                 <li><a class="dropdown-item" href="my-profile.html" id="miPerfil">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html" id="cerrarSesion">Cerrar sesión</a></li>
               </ul>
@@ -72,28 +77,28 @@
         <div id="formulario">
           <label for="profile-pic">Foto de perfil:</label>
           <div class="pic-container">
-            <img id="avatar" src="img\img_perfil.png" alt="Avatar" class="avatar">
+            <img id="avatar" src="img/img_perfil.png" alt="Avatar" class="avatar">
             <label for="profile-pic" class="upload-btn">
               <span>Cambiar Foto</span>
             </label>
             <input type="file" id="profile-pic" accept="image/*" style="display: none;">
           </div>
-
+    
           <label for="first-name">*Nombre:</label>
-          <input type="text" id="nombre" name="first-name" required>
-
+          <input type="text" id="nombre" name="first-name" required class="w-100">
+    
           <label for="middle-name">Segundo nombre:</label>
-          <input type="text" id="segundoNombre" name="middle-name">
-
+          <input type="text" id="segundoNombre" name="middle-name" class="w-100">
+    
           <label for="last-name">*Apellido:</label>
-          <input type="text" id="apellido" name="last-name" required>
-
+          <input type="text" id="apellido" name="last-name" required class="w-100">
+    
           <label for="email">*E-mail:</label>
-          <input type="email" id="email" name="email" required>
-
+          <input type="email" id="email" name="email" readonly class="w-100">
+    
           <label for="phone">Teléfono de contacto:</label>
-          <input type="tel" id="telefono" name="phone">
-
+          <input type="tel" id="telefono" name="phone" class="w-100">
+    
           <label for="themeDark">Modo nocturno:</label>
           <input type="checkbox" id="themeDark" name="theme" value="night">
           <button class="save-btn" id="guardarBtn" onclick="guardarDatos()">Guardar Datos</button>

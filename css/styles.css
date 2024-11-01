@@ -162,3 +162,10 @@ body.night-mode .list-group-item:hover{
     background-color: whitesmoke;
 }
   
+.custom-badge {
+    padding: 0.2rem 0.4rem; 
+    font-size: 1.15rem; 
+    background-color: transparent; 
+    border: 2px solid orange;
+    color: #FFFFFF; 
+}

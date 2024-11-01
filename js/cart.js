@@ -1,14 +1,15 @@
 // Función para mostrar el producto almacenado en el localStorage
 function loadCart() {
-    const cart = JSON.parse(localStorage.getItem("cart"));
+    const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
     const cartContainer = document.getElementById("cart-container");
 
     cartContainer.innerHTML = `<h2>Mi carrito</h2>`;
 
-    if (!cart || cart.articles.length === 0) { // Verifica si el carrito contiene productos
+    if (cart.articles.length === 0) { // Verifica si el carrito contiene productos
         cartContainer.innerHTML = `<p class="empty-cart">El carrito está vacío.</p>`;
+        updateCartBadge(); // Actualiza el badge en caso de carrito vacío
         return; // Salimos de la función si el carrito está vacío
-    } 
+    }
 
     let total = 0;
 
@@ -32,7 +33,6 @@ function loadCart() {
                 <p id="subtotal-${article.id}">Subtotal: ${article.currency} ${articleSubtotal}</p>
             </div>
         `;
-
     });
 
     // Mostrar el subtotal
@@ -51,7 +51,7 @@ function loadCart() {
             document.getElementById(`subtotal-${article.id}`).textContent = `Subtotal: ${article.currency} ${newSubtotal}`;
 
             article.count = newQuantity;
-            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el carrito en localStorage
             
             // Actualizar el subtotal
             let updatedTotal = 0;
@@ -68,8 +68,14 @@ function loadCart() {
             cart.articles.splice(index, 1); // Elimina el artículo del carrito
             localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el localStorage
             loadCart(); // Vuelve a cargar el carrito
+            updateCartBadge(); // Actualizar el badge
         });
     });
+
+    updateCartBadge(); // Llama a la función para actualizar el badge al cargar el carrito
 }
 
-loadCart(); // Llama a la función para cargar el carrito al iniciar la página
+// Llama a `loadCart()` solo si estamos en `cart.html`
+if (window.location.pathname.includes("cart.html")) {
+    loadCart();
+}

@@ -11,6 +11,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/stylemenu.css" rel="stylesheet">
   <link href="css/stylescart.css" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -38,7 +39,11 @@
                   NombreUsuario
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="cart.html" id="miCarrito">Mi carrito</a></li>
+                  <li>
+                    <a class="dropdown-item" href="cart.html" id="miCarrito">
+                        Mi carrito <span id="cart-badge" class="badge custom-badge">0</span>
+                    </a>
+                  </li>
                   <li><a class="dropdown-item" href="my-profile.html" id="miPerfil">Mi perfil</a></li>
                   <li><a class="dropdown-item" href="login.html" id="cerrarSesion">Cerrar sesión</a></li>
                 </ul>
@@ -49,7 +54,7 @@
     </div>
   </nav>
   <main>
-    <div class="container" id="cart-container">
+    <div class="container2" id="cart-container">
       <!--- Aqui se cargaran los productos dinamicamente --->
       
     </div>
