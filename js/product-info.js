@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     localStorage.setItem("cart", JSON.stringify(cart)); //guarda el array en localstorage
                     alert("¡Tu producto se ha añadido al carrito!"); // alerta de éxito
+                    updateCartBadge();
                 });
 
                 // Carga los productos relacionados
