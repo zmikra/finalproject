@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,74 +10,111 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/stylemenu.css" rel="stylesheet">
   <link href="css/stylescart.css" rel="stylesheet">
-  
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <div class="form-check form-check-inline">
-    </div>
+      <div class="form-check form-check-inline"></div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+          <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <div class="nav-link dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                NombreUsuario
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="cart.html" id="miCarrito">Mi carrito <span id="cart-badge" class="badge custom-badge">0</span></a></li>
+                <li><a class="dropdown-item" href="my-profile.html" id="miPerfil">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="login.html" id="cerrarSesion">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-            <li class="nav-item">
-              <div class="nav-link dropdown"> <!-- Nombre de usuario en la esquino superior derecha y menú desplegable -->
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  NombreUsuario
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="cart.html" id="miCarrito">
-                        Mi carrito <span id="cart-badge" class="badge custom-badge">0</span>
-                    </a>
-                  </li>
-                  <li><a class="dropdown-item" href="my-profile.html" id="miPerfil">Mi perfil</a></li>
-                  <li><a class="dropdown-item" href="login.html" id="cerrarSesion">Cerrar sesión</a></li>
-                </ul>
-              </div>
-            </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
     <div class="container2" id="cart-container">
-      <!--- Aqui se cargaran los productos dinamicamente --->
+      <!-- Sección de Detalle -->
+      <div id="detalle" class="section active">
+        <h1>Mi carrito</h1>
+        <div class="cart-items">
+          <!-- Productos cargados dinámicamente -->
+        </div>
+        <div class="subtotal">
+          <span>Subtotal:</span>
+          <span id="subtotal-price">$ precio</span>
+        </div>
+        <button onclick="nextSection('envio')">Siguiente</button>
+      </div>
       
+      <!-- Sección de Envío -->
+      <div id="envio" class="section">
+        <h1>Datos de envío</h1>
+        <form class="envio-form">
+          <label for="tipo-envio">Tipo:</label>
+          <select id="tipo-envio">
+            <option value="estandar">Envío estándar</option>
+            <option value="express">Envío express</option>
+          </select>
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" placeholder="Dirección">
+          <label for="ciudad">Ciudad:</label>
+          <input type="text" id="ciudad" placeholder="Ciudad">
+          <label for="estado">Estado:</label>
+          <input type="text" id="estado" placeholder="Estado">
+          <label for="cp">Código Postal:</label>
+          <input type="text" id="cp" placeholder="Código Postal">
+        </form>
+        <button onclick="previousSection('detalle')">Atrás</button>
+        <button onclick="nextSection('pago')">Siguiente</button>
+      </div>
+      
+      <!-- Sección de Método de Pago -->
+      <div id="pago" class="section">
+        <h1>Método de pago</h1>
+        <form class="pago-form">
+          <label><input type="radio" name="metodo-pago" value="tarjeta"> Tarjeta de crédito</label>
+          <label><input type="radio" name="metodo-pago" value="paypal"> PayPal</label>
+        </form>
+        <button onclick="previousSection('envio')">Atrás</button>
+        <button onclick="nextSection('confirmacion')">Finalizar compra</button>
+      </div>
+      
+      <!-- Sección de Confirmación -->
+      <div id="confirmacion" class="section">
+        <h1>Compra finalizada</h1>
+        <p>¡Compra finalizada con éxito!</p>
+        <button onclick="previousSection('pago')">Atrás</button>
+        <button onclick="nextSection('detalle')">Volver al inicio</button>
+      </div>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
+      <p class="float-end"><a href="#">Volver arriba</a></p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div><div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-  <script src="js/my-profile.js"></script>
-</body>
 
+</body>
 </html>
