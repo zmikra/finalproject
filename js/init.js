@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cerrarSesion.addEventListener("click", function(event) {
         event.preventDefault();  // Evita la acción predeterminada del enlace
 
-        localStorage.removeItem("usuario");  // Elimina el usuario de sessionStorage
+        localStorage.removeItem("usuario");  // Elimina el usuario de localStorage
         localStorage.setItem("sesionActiva", "false");  // Cambia el estado de la sesión
         localStorage.clear();  // Limpia todo el localStorage
         sessionStorage.clear();// Limpia todo el sessionStorage

@@ -44,7 +44,7 @@
   <main>
     <div class="container2" id="cart-container">
       <!-- Sección de Detalle -->
-      <div id="detalle" class="section active">
+      <div id="detalle" class="pantalla visible">
         <h1>Mi carrito</h1>
         <div class="cart-items">
           <!-- Productos cargados dinámicamente -->
@@ -53,51 +53,79 @@
           <span>Subtotal:</span>
           <span id="subtotal-price">$ precio</span>
         </div>
-        <button onclick="nextSection('envio')">Siguiente</button>
+        <div class="button-container">
+          <button onclick="nextSection('envio')" class="button">Siguiente</button>
+        </div>
       </div>
       
       <!-- Sección de Envío -->
-      <div id="envio" class="section">
+      <div id="envio" class="pantalla">
         <h1>Datos de envío</h1>
+        <hr>
         <form class="envio-form">
-          <label for="tipo-envio">Tipo:</label>
-          <select id="tipo-envio">
-            <option value="estandar">Envío estándar</option>
-            <option value="express">Envío express</option>
-          </select>
-          <label for="direccion">Dirección:</label>
-          <input type="text" id="direccion" placeholder="Dirección">
-          <label for="ciudad">Ciudad:</label>
-          <input type="text" id="ciudad" placeholder="Ciudad">
-          <label for="estado">Estado:</label>
-          <input type="text" id="estado" placeholder="Estado">
-          <label for="cp">Código Postal:</label>
-          <input type="text" id="cp" placeholder="Código Postal">
+          <label for="tipo-envio"><h5>Tipo de envío:</h5></label>
+          <ul>
+            <li><label><input type="radio" name="metodo-envio" value="envioPremium"> Premium - 2 a 5 días (15%)</label></li>
+            <li><label><input type="radio" name="metodo-envio" value="envioExpress"> Express - 5 a 8 días (7%)</label></li>
+            <li><label><input type="radio" name="metodo-envio" value="envioStandars"> Standard - 12 a 15 días (5%)</label></li>
+          </ul>
+          <hr>
+          <label for="direccion"><h5>Dirección:</h5></label>
+          <ul>
+            <li><label for="departamento">Departamento:</label></li>
+            <input type="text" id="departamento">
+            
+            <li><label for="localidad">Localidad:</label></li>
+            <input type="text" id="localidad">
+            
+            <li><label for="calle">Calle:</label></li>
+            <input type="text" id="calle">
+            
+            <li><label for="numero">Número:</label></li>
+            <input type="text" id="numero">
+            
+            <li><label for="esquina">Esquina:</label></li>
+            <input type="text" id="esquina">
+          </ul>
         </form>
-        <button onclick="previousSection('detalle')">Atrás</button>
-        <button onclick="nextSection('pago')">Siguiente</button>
+        <div class="button-container">
+          <button onclick="previousSection('detalle')" class="button">Atrás</button>
+          <button onclick="nextSection('pago')" class="button">Siguiente</button>
+        </div>
       </div>
       
       <!-- Sección de Método de Pago -->
-      <div id="pago" class="section">
-        <h1>Método de pago</h1>
-        <form class="pago-form">
-          <label><input type="radio" name="metodo-pago" value="tarjeta"> Tarjeta de crédito</label>
-          <label><input type="radio" name="metodo-pago" value="paypal"> PayPal</label>
-        </form>
-        <button onclick="previousSection('envio')">Atrás</button>
-        <button onclick="nextSection('confirmacion')">Finalizar compra</button>
+      <div id="pago" class="pantalla">
+        <h1>Costos</h1>
+        <hr>
+        <p>Subtotal:</p>
+        <p>Costo de envío:</p>
+        <hr class="lineaGruesa">
+        <p>Total:</p>
+        <hr>
+        <h5>Métodos de Pago</h5>
+        <ul>
+          <li><label><input type="radio" name="metodo-pago" value="tarjetaCredito"> Tarjeta de crédito</label></li>
+          <li><label><input type="radio" name="metodo-pago" value="transferencia"> Transferencia bancaria</label></li>
+          <li><label><input type="radio" name="metodo-pago" value="redesCobranza"> Redes de cobranza (Abitab - Redpagos)</label></li>
+        </ul>
+        <div class="button-container">
+          <button onclick="previousSection('envio')" class="button">Atrás</button>
+          <button onclick="nextSection('confirmacion')" class="button">Finalizar compra</button>
+        </div>
       </div>
       
       <!-- Sección de Confirmación -->
-      <div id="confirmacion" class="section">
+      <div id="confirmacion" class="pantalla">
         <h1>Compra finalizada</h1>
         <p>¡Compra finalizada con éxito!</p>
-        <button onclick="previousSection('pago')">Atrás</button>
-        <button onclick="nextSection('detalle')">Volver al inicio</button>
+        <div class="button-container">
+          <button onclick="window.location.href='index.html'" class="button">Volver al inicio</button>
+        </div>
       </div>
     </div>
   </main>
+  
 
   <footer class="text-muted">
     <div class="container">
@@ -115,6 +143,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  
 
 </body>
 </html>

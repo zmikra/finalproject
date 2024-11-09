@@ -1,4 +1,5 @@
-window.onload = function() {
+
+  window.onload = function() {
     // Cargar el tema guardado 
     const savedTheme = localStorage.getItem('theme') || 'day';
     applyTheme(savedTheme);
@@ -96,5 +97,6 @@ function guardarDatos() {
 
     alert("Datos guardados correctamente.");
 }
+
 
 

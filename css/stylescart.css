@@ -77,18 +77,15 @@
 }
 
 .remove-button {
-    color: rgb(8, 8, 8); 
-    border-color: #ffa500; 
+
+    color:#1f1f1f; 
     border-radius: 4px; 
-    padding: 5px; 
-    cursor: pointer; 
-    font-size: 12px; 
-    transition: background-color 0.3s; 
-    margin-left: 8px; 
-    background-color: #ffa500;
-    text-align: center;
-    border-width: 1px;
-    height: 35px;
+    border: 1px solid #FFA500; /* Ajusta el color del borde */
+    box-shadow: none; /* Elimina el sombreado */
+    outline: none; /* Elimina el contorno que aparece al hacer clic */
+    padding: 4px; /* Ajusta el espacio interno */
+    border-radius: 4px; /* Redondea las esquinas si es necesario */
+    background-color: white;
 }
 
 .remove-button:hover {
@@ -136,3 +133,72 @@ body.night-mode .container2{
         width: 100%;
     }
 }
+.lineaGruesa{   
+     border: none; /* Elimina el estilo predeterminado */
+    border-top: 3px solid orange ; /* Cambia el color y grosor */
+    margin: 20px 0; /* Ajusta el espacio alrededor de la línea */
+
+}
+hr{
+    border: none; /* Elimina el estilo predeterminado */
+    border-top: 2px solid orange; /* Cambia el color y grosor  */
+    margin: 20px 0; /* Ajusta el espacio alrededor de la línea */
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    margin-top: 20px;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    text-align: right; /* Opcional, pero no afecta */
+}
+
+.button {
+    color: rgb(8, 8, 8); 
+    border-color: #ffa500;  
+    border-radius: 4px; 
+    margin: 10px; 
+    cursor: pointer; 
+    font-size: 15px; 
+    transition: background-color 0.3s; 
+    background-color: #ffa600;
+    border-width: 1px;
+    height: 40px;
+    box-shadow: none; /* Elimina el sombreado */
+    outline: none; /* Elimina el contorno que aparece al hacer clic */
+}
+
+.button:hover {
+    background-color: darkorange; 
+}
+    
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 42;
+}
+li {
+    margin-left: 15px;
+}
+
+input[type="text"] {
+    margin-left: 15px;
+    margin-bottom: 9px;
+    box-shadow: none; /* Elimina el sombreado */
+    outline: none; /* Elimina el contorno que aparece al hacer clic */
+    border-radius: 4px; /* Redondea las esquinas si es necesario */
+    padding: 10px;
+    border: 1px solid orange; /* Borde naranja en modo claro */
+    border-radius: 5px;
+    outline: none;
+    width: 400px;
+    height: 30px;
+}
+
+ .pantalla {
+    display: none;
+}
+
+.pantalla.visible {
+    display: block;
+} 
+

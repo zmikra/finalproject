@@ -1,13 +1,16 @@
-// Función para mostrar el producto almacenado en el localStorage
+// Función para cargar el carrito y mostrar productos en la pantalla de Detalle
 function loadCart() {
     const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
-    const cartContainer = document.getElementById("cart-container");
+    const cartItemsContainer = document.querySelector("#detalle .cart-items");
+    const subtotalContainer = document.getElementById("subtotal-price");
 
-    cartContainer.innerHTML = `<h2>Mi carrito</h2>`;
+    // Limpiar contenido previo
+    cartItemsContainer.innerHTML = "";
 
-    if (cart.articles.length === 0) { // Verifica si el carrito contiene productos
-        cartContainer.innerHTML = `<p class="empty-cart">El carrito está vacío.</p>`;
-        updateCartBadge(); // Actualiza el badge en caso de carrito vacío
+    if (cart.articles.length === 0) { // Verifica si el carrito está vacío
+        cartItemsContainer.innerHTML = `<p class="empty-cart">El carrito está vacío.</p>`;
+        updateCartBadge(); // Actualiza el badge si el carrito está vacío
+        subtotalContainer.textContent = "$ 0";
         return; // Salimos de la función si el carrito está vacío
     }
 
@@ -17,7 +20,7 @@ function loadCart() {
         const articleSubtotal = article.cost * article.count;
         total += articleSubtotal;
 
-        cartContainer.innerHTML += `
+        cartItemsContainer.innerHTML += `
             <div class="product">
                 <img src="${article.image}" alt="${article.name}" width="100">
                 <div class="product-details">
@@ -35,47 +38,62 @@ function loadCart() {
         `;
     });
 
-    // Mostrar el subtotal
-    cartContainer.innerHTML += `
-        <div class="total">
-            <h4>Importe total: $ ${total}</h4>
-        </div>
-    `;
+    // Mostrar el subtotal en la pantalla de Detalle
+    subtotalContainer.textContent = `$ ${total}`;
 
-    // Agregar eventos a los campos de cantidad y a los botones de eliminar
+    // Agregar eventos a los campos de cantidad y botones de eliminar
     cart.articles.forEach((article, index) => {
-        const quantityInput = document.getElementById(`quantity-${article.id}`); // Referenciación al campo de cantidad
-        quantityInput.addEventListener("input", () => {
-            const newQuantity = parseInt(quantityInput.value);
-            const newSubtotal = article.cost * newQuantity;
-            document.getElementById(`subtotal-${article.id}`).textContent = `Subtotal: ${article.currency} ${newSubtotal}`;
+        const quantityInput = document.getElementById(`quantity-${article.id}`);
+        quantityInput.addEventListener("input", () => updateQuantity(article, quantityInput, cart));
 
-            article.count = newQuantity;
-            localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el carrito en localStorage
-            updateCartBadge(); // Actualizar el badge
-            // Actualizar el subtotal
-            let updatedTotal = 0;
-            cart.articles.forEach(article => {
-                updatedTotal += article.cost * article.count;
-            });
-            document.querySelector('.total h4').textContent = `Importe total: $ ${updatedTotal}`;
-            updateCartBadge(); // Actualizar el badge
-        });
-
-        // Agregar evento de eliminar
         const removeButton = document.querySelector(`.remove-button[data-index="${index}"]`);
-        removeButton.addEventListener("click", () => {
-            cart.articles.splice(index, 1); // Elimina el artículo del carrito
-            localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el localStorage
-            loadCart(); // Vuelve a cargar el carrito
-            updateCartBadge(); // Actualizar el badge
-        });
+        removeButton.addEventListener("click", () => removeArticle(index, cart));
     });
 
-    updateCartBadge(); // Llama a la función para actualizar el badge al cargar el carrito
+    updateCartBadge();
 }
 
-// Llama a `loadCart()` solo si estamos en `cart.html`
-if (window.location.pathname.includes("cart.html")) {
-  loadCart();
+// Actualiza la cantidad de un artículo y el total
+function updateQuantity(article, quantityInput, cart) {
+    const newQuantity = parseInt(quantityInput.value);
+    const newSubtotal = article.cost * newQuantity;
+    document.getElementById(`subtotal-${article.id}`).textContent = `Subtotal: ${article.currency} ${newSubtotal}`;
+
+    article.count = newQuantity;
+    localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el carrito en localStorage
+
+    let updatedTotal = 0;
+    cart.articles.forEach(item => {
+        updatedTotal += item.cost * item.count;
+    });
+    document.getElementById("subtotal-price").textContent = `$ ${updatedTotal}`;
+    updateCartBadge();
 }
+
+// Elimina un artículo del carrito
+function removeArticle(index, cart) {
+    cart.articles.splice(index, 1); // Elimina el artículo
+    localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza localStorage
+    loadCart(); // Vuelve a cargar el carrito
+    updateCartBadge();
+}
+
+// Función para mostrar la siguiente pantalla
+function nextSection(idPantalla) {
+    const pantallas = document.querySelectorAll('.pantalla');
+    pantallas.forEach(pantalla => pantalla.classList.remove('visible'));
+
+    const pantallaActual = document.getElementById(idPantalla);
+    pantallaActual.classList.add('visible');
+}
+
+// Función para mostrar la pantalla anterior
+function previousSection(idPantalla) {
+    nextSection(idPantalla);
+}
+
+// Inicializa el carrito y la primera pantalla
+document.addEventListener('DOMContentLoaded', () => {
+    loadCart(); // Cargar el carrito al inicio
+    nextSection('detalle'); // Muestra la pantalla de Detalle inicialmente
+});
