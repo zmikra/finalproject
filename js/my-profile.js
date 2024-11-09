@@ -1,8 +1,4 @@
 window.onload = function() {
-    // Cargar el tema guardado 
-    const savedTheme = localStorage.getItem('theme') || 'day';
-    applyTheme(savedTheme);
-
     // Verifica si la sesión está activa
     if (localStorage.getItem("sesionActiva") === "true") {
         // Si el usuario está logueado, carga su información
@@ -20,7 +16,7 @@ window.onload = function() {
         const savedAvatar = localStorage.getItem("avatar");
         if (savedAvatar) { // Cargar el avatar desde localStorage si existe
             avatar.src = savedAvatar;
-        }else {
+        } else {
             avatar.src = "img/img_perfil.png";  // Cargar la imagen por defecto si no hay avatar guardado
             console.log('Cargando avatar por defecto.');
         }
@@ -44,30 +40,6 @@ window.onload = function() {
         }
     });
 };
-
-function applyTheme(theme) {
-    if (theme === 'night') {
-        document.body.classList.add('night-mode');
-        const checkbox = document.getElementById('themeDark');
-        if (checkbox) checkbox.checked = true;
-    } else {
-        document.body.classList.remove('night-mode');
-        const checkbox = document.getElementById('themeDark');
-        if (checkbox) checkbox.checked = false;
-    }
-}
-
-// Evento de clic que hace el cambio de tema 
-document.addEventListener('DOMContentLoaded', function() {
-    const checkbox = document.getElementById('themeDark');
-    if (checkbox) {
-        checkbox.addEventListener('change', function() {
-            const theme = this.checked ? 'night' : 'day';
-            localStorage.setItem('theme', theme);
-            applyTheme(theme);
-        });
-    }
-});
 
 function guardarDatos() {
     // Obtener los valores de los campos

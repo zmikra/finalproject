@@ -87,3 +87,28 @@ window.addEventListener("storage", (event) => {
         updateCartBadge(); // Actualiza el badge cuando el carrito cambia en otra pestaña
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Verifica si hay un tema guardado en localStorage
+    const savedTheme = localStorage.getItem('theme') || 'day';
+    applyTheme(savedTheme);
+
+    // Evento para manejar el cambio de tema en todo el sitio
+    const checkbox = document.getElementById('themeDark');
+    if (checkbox) {
+        checkbox.addEventListener('change', function() {
+            const theme = this.checked ? 'night' : 'day';
+            localStorage.setItem('theme', theme);
+            applyTheme(theme);
+        });
+    }
+
+    // Función para aplicar el tema
+    function applyTheme(theme) {
+        if (theme === 'night') {
+            document.body.classList.add('night-mode');
+        } else {
+            document.body.classList.remove('night-mode');
+        }
+    }
+});
