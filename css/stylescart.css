@@ -153,18 +153,27 @@ hr{
 }
 
 .button {
-    color: rgb(8, 8, 8); 
+
     border-color: #ffa500;  
     border-radius: 4px; 
     margin: 10px; 
     cursor: pointer; 
     font-size: 15px; 
     transition: background-color 0.3s; 
-    background-color: #ffa600;
     border-width: 1px;
     height: 40px;
     box-shadow: none; /* Elimina el sombreado */
     outline: none; /* Elimina el contorno que aparece al hacer clic */
+    grid-column: span 2; 
+    justify-self: end;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 150px;
 }
 
 .button:hover {
