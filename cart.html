@@ -60,7 +60,7 @@
         </div>
         <div class="subtotal">
           <span>Subtotal:</span>
-          <span id="subtotal-price">$ precio</span>
+          <span id="subtotal-price">$0</span>
         </div>
         <div class="button-container">
           <button onclick="nextSection('envio')" class="button">Siguiente</button>
@@ -74,9 +74,9 @@
         <form class="envio-form">
           <label for="tipo-envio"><h5>Tipo de envío:</h5></label>
           <ul>
-            <li><label><input type="radio" name="metodo-envio" value="envioPremium"> Premium - 2 a 5 días (15%)</label></li>
-            <li><label><input type="radio" name="metodo-envio" value="envioExpress"> Express - 5 a 8 días (7%)</label></li>
-            <li><label><input type="radio" name="metodo-envio" value="envioStandars"> Standard - 12 a 15 días (5%)</label></li>
+            <li><label><input type="radio" name="metodo-envio" value="envioPremium" onclick="updateCosts()"> Premium - 2 a 5 días (15%)</label></li>
+            <li><label><input type="radio" name="metodo-envio" value="envioExpress" onclick="updateCosts()"> Express - 5 a 8 días (7%)</label></li>
+            <li><label><input type="radio" name="metodo-envio" value="envioStandars" onclick="updateCosts()"> Standard - 12 a 15 días (5%)</label></li>
           </ul>
           <hr>
           <label for="direccion"><h5>Dirección:</h5></label>
@@ -107,10 +107,10 @@
       <div id="pago" class="pantalla">
         <h1>Costos</h1>
         <hr>
-        <p>Subtotal:</p>
-        <p>Costo de envío:</p>
+        <p class="pcostos">Subtotal: $<span id="cost-subtotal">0</span></p>
+        <p class="pcostos">Costo de envío: $<span id="cost-envio">0</span></p>
         <hr class="lineaGruesa">
-        <p>Total:</p>
+        <p class="ptotal">Total: $<span id="cost-total">0</span></p>
         <hr>
         <h5>Métodos de Pago</h5>
         <ul>
@@ -152,7 +152,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-  
-
 </body>
 </html>
+
+

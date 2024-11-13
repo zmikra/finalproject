@@ -107,6 +107,7 @@
 
 body.night-mode .container2{
     background-color: #c0c0c0;
+    color:#1f1f1f;
 }
 
 @media (max-width: 768px) {
@@ -206,6 +207,14 @@ input[type="text"] {
 .pantalla.visible {
     display: block;
 } 
+.pcostos{
+    text-align: right;
+}
+.ptotal{
+    text-align: right;
+    font-size: x-large;
+    font-weight: bold;
+}
 
 /* Contenedor principal de la barra de progreso */
 .progress-container {
