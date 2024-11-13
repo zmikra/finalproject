@@ -91,7 +91,7 @@ function nextSection(idPantalla) {
     // Cambiar el color del título de la barra superior a negro
     const steps = document.querySelectorAll('.progress-bar .step');
     steps.forEach(step => {
-        step.style.color = ''; // Restablecer el color anterior, si hay
+        step.style.color = ''; // Restablecer el color anterior
     });
 
     // Cambiar el color del paso actual
@@ -101,6 +101,27 @@ function nextSection(idPantalla) {
 
     // Cambiar el color del paso actual a negro
     step.style.color = 'black';  // Cambia el color a negro
+}
+
+// Función para cambiar a la siguiente pantalla con validación
+function nextSectionWithValidation(idPantalla) {
+    let valid = true;
+
+    switch (idPantalla) {
+        case 'envio':
+            valid = validarCantidadProductos();
+            break;
+        case 'pago':
+            valid = validarDireccion() && validarEnvio();
+            break;
+        case 'confirmacion':
+            valid = validarPago();
+            break;
+    }
+
+    if (valid) {
+        nextSection(idPantalla);
+    }
 }
 
 // Función para mostrar la pantalla anterior
@@ -157,3 +178,76 @@ document.addEventListener('DOMContentLoaded', () => {
     nextSection('detalle'); // Muestra la pantalla de Detalle inicialmente
 });
 
+// PUNTO 4 - ENTREGA 7
+
+// Funcion para validad la cantidad de productos
+function validarCantidadProductos() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+
+    if (cart.articles.length === 0) {
+        alert("El carrito está vacío. Agrega productos para continuar.");
+        return false;
+    }
+
+    // Verificamos que todos los productos tengan una cantidad mayor que 0
+    for (let article of cart.articles) {
+        if (article.count <= 0) {
+            alert(`La cantidad para el producto "${article.name}" debe ser mayor a 0.`);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Funcion para validar los campos de direccion
+function validarDireccion() {
+    var departamento = document.getElementById("departamento").value.trim();
+    var localidad = document.getElementById("localidad").value.trim();
+    var calle = document.getElementById("calle").value.trim();
+    var numero = document.getElementById("numero").value.trim();
+    var esquina = document.getElementById("esquina").value.trim();
+
+    if (departamento === "" || localidad === "" || calle === "" || numero === "" || esquina === "") {
+        alert("Por favor, complete todos los campos.");
+        return false; 
+    }
+    return true;
+}
+
+// Funcion para validar el metodo de envio
+function validarEnvio() {
+    const envioSeleccionado = document.querySelector('input[name="metodo-envio"]:checked');
+    if (!envioSeleccionado) {
+        alert("Por favor, seleccione una forma de envío.");
+        return false;
+    }
+    return true;
+}
+
+// Funcion para validar metodo de pago
+function validarPago() {
+    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
+    if (!metodoPago) {
+        alert("Por favor, seleccione una forma de pago.");
+        return false;
+    }
+    return true;
+}
+
+// Funcion final para validar la compra
+function finalizarCompra() {
+    if (validarDireccion() && validarEnvio() && validarCantidadProductos() && validarPago()) {
+        nextSection('confirmacion');
+    }
+}
+
+// Asociar cada botón "Siguiente" con la función de validación
+document.querySelectorAll('.boton-siguiente').forEach(boton => {
+    boton.addEventListener('click', () => {
+        const siguientePantalla = boton.getAttribute('data-next'); 
+        nextSectionWithValidation(siguientePantalla);
+    });
+});
+
+// Asociar el botón de "Finalizar compra" con la función de finalizarCompra
+document.querySelector('button.finalizar-compra').addEventListener('click', finalizarCompra);

@@ -63,7 +63,7 @@
           <span id="subtotal-price">$0</span>
         </div>
         <div class="button-container">
-          <button onclick="nextSection('envio')" class="button">Siguiente</button>
+          <button class="button boton-siguiente" data-next="envio">Siguiente</button>
         </div>
       </div>
       
@@ -82,24 +82,24 @@
           <label for="direccion"><h5>Dirección:</h5></label>
           <ul>
             <li><label for="departamento">Departamento:</label></li>
-            <input type="text" id="departamento">
+            <input type="text" id="departamento" required>
             
             <li><label for="localidad">Localidad:</label></li>
-            <input type="text" id="localidad">
+            <input type="text" id="localidad" required>
             
             <li><label for="calle">Calle:</label></li>
-            <input type="text" id="calle">
+            <input type="text" id="calle" required>
             
             <li><label for="numero">Número:</label></li>
-            <input type="text" id="numero">
+            <input type="text" id="numero" required>
             
             <li><label for="esquina">Esquina:</label></li>
-            <input type="text" id="esquina">
+            <input type="text" id="esquina" required>
           </ul>
         </form>
         <div class="button-container">
           <button onclick="previousSection('detalle')" class="button">Atrás</button>
-          <button onclick="nextSection('pago')" class="button">Siguiente</button>
+          <button class="button boton-siguiente" data-next="pago">Siguiente</button>
         </div>
       </div>
       
@@ -120,7 +120,7 @@
         </ul>
         <div class="button-container">
           <button onclick="previousSection('envio')" class="button">Atrás</button>
-          <button onclick="nextSection('confirmacion')" class="button">Finalizar compra</button>
+          <button class="button boton-siguiente" data-next="confirmacion">Finalizar compra</button>
         </div>
       </div>
       
