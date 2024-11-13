@@ -23,37 +23,33 @@
     align-items: center; 
     justify-content: space-between;
     border-bottom: 1px solid #ffa500;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .product-details {
     display: flex;
     flex-direction: column;
     flex: 1; 
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .product img {
-    width: 30%;
-    height: 30%;
+    width: 25%;
+    height: auto;
     border-radius: 8px;
-    margin-right: 2em;
+    margin-right: 1em;
 }
     
 .product h5 {
-    font-size: 120%;
-    color: #292828;
     margin: 0;
-    flex: 1;
-    text-align: left;
+    font-size: 14px;
+    color: #333333;
 }
     
 .product p {
     margin: 0;
-    margin-right: 20px;
     font-size: 14px;
     color: #333333;
-    margin-right: 2em;
 }
     
 .product label {
@@ -64,20 +60,13 @@
     
 .product input[type="number"] {
     width: 50px;
-    margin-left: 5px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffa500;
     border-radius: 4px;
     text-align: center;
-    border-color: #ffa500;
-}
-    
-.product:last-child {
-    border-bottom: none;
 }
 
 .remove-button {
-
     color:#1f1f1f; 
     border-radius: 4px; 
     border: 1px solid #FFA500; /* Ajusta el color del borde */
@@ -102,16 +91,20 @@
 .subtotal {
     text-align: right;
     font-weight: bold;
-    font-size: 95%;
+    font-size: 16px;
     color: #333333;
-    border-top: 1px solid #ffa500;
+    border-top: 2px solid #ffa500;
+    padding-top: 10px;
+    margin-top: 15px;
 }
 
 .total {
     text-align: right;
-    margin-top: 18px;
+    margin-top: 20px;
     color: #333;
+    font-size: 18px;
 }
+
 body.night-mode .container2{
     background-color: #c0c0c0;
 }
@@ -133,17 +126,20 @@ body.night-mode .container2{
         width: 100%;
     }
 }
+
 .lineaGruesa{   
-     border: none; /* Elimina el estilo predeterminado */
+    border: none; /* Elimina el estilo predeterminado */
     border-top: 3px solid orange ; /* Cambia el color y grosor */
     margin: 20px 0; /* Ajusta el espacio alrededor de la línea */
 
 }
+
 hr{
     border: none; /* Elimina el estilo predeterminado */
     border-top: 2px solid orange; /* Cambia el color y grosor  */
     margin: 20px 0; /* Ajusta el espacio alrededor de la línea */
 }
+
 .button-container {
     display: flex;
     justify-content: flex-end; /* Alinea los botones a la derecha */
@@ -153,7 +149,6 @@ hr{
 }
 
 .button {
-
     border-color: #ffa500;  
     border-radius: 4px; 
     margin: 10px; 
@@ -185,6 +180,7 @@ ul {
     padding: 0;
     margin: 42;
 }
+
 li {
     margin-left: 15px;
 }
@@ -199,7 +195,7 @@ input[type="text"] {
     border: 1px solid orange; /* Borde naranja en modo claro */
     border-radius: 5px;
     outline: none;
-    width: 400px;
+    width: 90%;
     height: 30px;
 }
 
@@ -211,3 +207,52 @@ input[type="text"] {
     display: block;
 } 
 
+/* Contenedor principal de la barra de progreso */
+.progress-container {
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    border: 2px solid #ffa500;
+    border-radius: 8px;
+    background-color: #ffffff; 
+}
+
+/* Estilos generales de la barra de progreso */
+.progress-bar {
+    display: flex;  
+    justify-content: space-between; 
+    padding: 10px 0;
+    background-color: transparent;
+  }
+  
+  /* Estilos para cada paso en la barra */
+  .step {
+    flex: 1;  
+    text-align: center;  
+    font-weight: bold;
+    color: gray;  
+    transition: color 0.3s ease; 
+  }
+  
+  /* Media query para pantallas grandes */
+  @media (min-width: 768px) {
+    .progress-bar {
+      flex-direction: row; /* En pantallas grandes, los pasos estarán en fila */
+    }
+  
+    .step {
+      margin: 0 10px; 
+    }
+  }
+  
+  /* Media query para pantallas pequeñas */
+  @media (max-width: 767px) {
+    .progress-bar {
+      flex-direction: column; /* En pantallas pequeñas, los pasos estarán en columna */
+    }
+  
+    .step {
+      margin-bottom: 10px; 
+    }
+  }
+  

@@ -85,6 +85,20 @@ function nextSection(idPantalla) {
 
     const pantallaActual = document.getElementById(idPantalla);
     pantallaActual.classList.add('visible');
+
+    // Cambiar el color del título de la barra superior a negro
+    const steps = document.querySelectorAll('.progress-bar .step');
+    steps.forEach(step => {
+        step.style.color = ''; // Restablecer el color anterior, si hay
+    });
+
+    // Cambiar el color del paso actual
+    const pasoActual = pantallaActual.getAttribute('id');
+    const pasoIndex = ['detalle', 'envio', 'pago', 'confirmacion'].indexOf(pasoActual);
+    const step = steps[pasoIndex];
+
+    // Cambiar el color del paso actual a negro
+    step.style.color = 'black';  // Cambia el color a negro
 }
 
 // Función para mostrar la pantalla anterior
