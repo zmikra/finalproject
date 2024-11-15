@@ -1,6 +1,8 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+
 // Función para cargar el carrito y mostrar productos en la pantalla de Detalle
 function loadCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+
     const cartItemsContainer = document.querySelector("#detalle .cart-items");
     const subtotalContainer = document.getElementById("subtotal-price");
 
@@ -165,12 +167,14 @@ function updateCosts() {
     document.getElementById("cost-total").textContent = totalCompra.toFixed(2); 
 }
 
-// Función para mostrar el badge del carrito
+// Función para mostrar la cantidad total de productos en el badge del carrito
 function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+    const totalItems = cart.articles.reduce((acc, item) => acc + item.count, 0); // Sumar la cantidad de cada artículo
     const cartBadge = document.getElementById("cart-badge");
-    cartBadge.textContent = cart.articles.length;
+    cartBadge.textContent = totalItems;
 }
+
 
 // Inicializa el carrito y la primera pantalla
 document.addEventListener('DOMContentLoaded', () => {
@@ -234,12 +238,7 @@ function validarPago() {
     return true;
 }
 
-// Funcion final para validar la compra
-function finalizarCompra() {
-    if (validarDireccion() && validarEnvio() && validarCantidadProductos() && validarPago()) {
-        nextSection('confirmacion');
-    }
-}
+
 
 // Asociar cada botón "Siguiente" con la función de validación
 document.querySelectorAll('.boton-siguiente').forEach(boton => {
@@ -249,5 +248,31 @@ document.querySelectorAll('.boton-siguiente').forEach(boton => {
     });
 });
 
-// Asociar el botón de "Finalizar compra" con la función de finalizarCompra
-document.querySelector('button.finalizar-compra').addEventListener('click', finalizarCompra);
+// Elimina el carrito al comprar artículos
+function clearCart() {
+    cart.articles = [];
+    localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza localStorage
+    loadCart(); // Vuelve a cargar el carrito
+    updateCosts(); // Actualiza los costos nuevamente
+    updateCartBadge();
+}
+
+function finalizarCompra() {
+    if (validarDireccion() && validarEnvio() && validarCantidadProductos() && validarPago()) {
+        // Bajar opacidad y mostrar cursor de espera en la pantalla actual
+        document.body.style.opacity = 0.4;
+        document.body.style.cursor = 'wait';
+
+        // Esperar 2 segundos antes de cambiar de sección
+        setTimeout(() => {
+            // Restaurar opacidad y cursor antes de cambiar de sección
+            document.body.style.opacity = 1;
+            document.body.style.cursor = 'default';
+
+            // Cambiar a la sección de confirmación y limpiar el carrito
+            nextSection('confirmacion');
+            clearCart();
+        }, 2000);
+    }
+}
+
