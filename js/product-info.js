@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //uso un if que tenga como condición el valor true de opinionText y que haya + de 0 estrellas seleccionadas
         if (opinionText && selectedStars > 0) {
             let commentsList = document.getElementById("list");
-            let usuario = sessionStorage.getItem("usuario")    
+            let usuario = localStorage.getItem("nombre")    
             // creo variable newCommentHTML que tome los datos del comentario, fecha, hora y estrellas
             let newCommentHTML = `
                 <li class="list-group-item">

@@ -82,12 +82,54 @@ function removeArticle(index, cart) {
     updateCartBadge();
 }
 
-// Función para mostrar la siguiente pantalla
+// Función para mostrar la siguiente pantalla con validación
+function nextSectionWithValidation(idPantalla) {
+    let valid = true;
+
+    // Realizar validaciones según la pantalla
+    switch (idPantalla) {
+        case 'envio':
+            valid = validarCantidadProductos();
+            break;
+        case 'pago':
+            valid = validarDireccion() && validarEnvio();
+            break;
+        case 'confirmacion':
+            valid = validarPago();
+            break;
+    }
+
+    if (!valid) {
+        return; // Si no es válido, no pasa a la siguiente pantalla
+    }
+
+    // Si la validación pasa, entonces cambiamos de pantalla
+    nextSection(idPantalla);
+}
+
+// Función para cambiar a la siguiente pantalla
 function nextSection(idPantalla) {
+    // Verificar que idPantalla no sea null
+    if (!idPantalla) {
+        return;
+    }
+
     const pantallas = document.querySelectorAll('.pantalla');
-    pantallas.forEach(pantalla => pantalla.classList.remove('visible'));
+    pantallas.forEach(pantalla => {
+        // Solo se oculta la pantalla si su id es diferente del que se está mostrando
+        if (pantalla.id !== idPantalla) {
+            pantalla.classList.remove('visible');
+        }
+    });
 
     const pantallaActual = document.getElementById(idPantalla);
+    
+    // Si pantallaActual es null (no se encuentra el idPantalla), no hacemos nada
+    if (!pantallaActual) {
+        console.error(`Error: no se encuentra el elemento con el id "${idPantalla}"`);
+        return;
+    }
+
     pantallaActual.classList.add('visible');
 
     // Cambiar el color del título de la barra superior a negro
@@ -105,26 +147,7 @@ function nextSection(idPantalla) {
     step.style.color = 'black';  // Cambia el color a negro
 }
 
-// Función para cambiar a la siguiente pantalla con validación
-function nextSectionWithValidation(idPantalla) {
-    let valid = true;
 
-    switch (idPantalla) {
-        case 'envio':
-            valid = validarCantidadProductos();
-            break;
-        case 'pago':
-            valid = validarDireccion() && validarEnvio();
-            break;
-        case 'confirmacion':
-            valid = validarPago();
-            break;
-    }
-
-    if (valid) {
-        nextSection(idPantalla);
-    }
-}
 
 // Función para mostrar la pantalla anterior
 function previousSection(idPantalla) {
