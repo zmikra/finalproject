@@ -1,4 +1,3 @@
-//Creo las variables similares a las que tenemos en categories.js 
 const ORDER_ASC_BY_PRICE = "PRICE_ASC";
 const ORDER_DESC_BY_PRICE = "PRICE_DESC";
 const ORDER_DESC_BY_RELEVANCE = "RELEVANCE_DESC";
@@ -6,46 +5,45 @@ let currentProductsArray = [];
 let currentSortCriteria = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
-let currentSearchInput = ""; //  variable global para almacenar el texto de búsqueda
+let currentSearchInput = ""; 
 
-/*creo función para hacerle sort a los productos y ordenarlos según los criterios manejados de la entrega.
-Este sort los ordena haciendo uso de una función anónima*/
+// Función para ordenar los productos según el criterio seleccionado
 function sortProducts(criteria, array) {
     let result = [];
-    if (criteria === ORDER_ASC_BY_PRICE) {
-        //organiza los productos del más barato al más caro
-        result = array.sort(function(a, b) {
-            return a.cost - b.cost;
-        });
-    } else if (criteria === ORDER_DESC_BY_PRICE) {
-        //organiza los productos del más caro al más barato
-        result = array.sort(function(a, b) {
-            return b.cost - a.cost;
-        });
-    } else if (criteria === ORDER_DESC_BY_RELEVANCE) {
-        //organiza los productos según la relevancia (del más vendido al menos vendido)
-        result = array.sort(function(a, b) {
-            return b.soldCount - a.soldCount;
-        });
+//Cambio el if por un switch para acortar el código.
+    switch (criteria) {
+        case ORDER_ASC_BY_PRICE:
+            result = array.sort((a, b) => a.cost - b.cost);
+            break;
+        case ORDER_DESC_BY_PRICE:
+            result = array.sort((a, b) => b.cost - a.cost);
+            break;
+        case ORDER_DESC_BY_RELEVANCE:
+            result = array.sort((a, b) => b.soldCount - a.soldCount);
+            break;
+        default:
+            result = array;
+            break;
     }
     return result;
 }
 
+// Función para mostrar los productos en la interfaz
 function showProducts(productList, searchInput) {
     let productsHTML = "";
 
-    // si filtra por texto:
-    if (searchInput != undefined) {
-        // mantener unicamente los elementos que coinciden con la busqueda
-        productList = productList.filter(p => {
-            return p.name.toLowerCase().includes(searchInput.toLowerCase())
-            || p.description.toLowerCase().includes(searchInput.toLowerCase())
-        });
+    // Filtrar productos por búsqueda
+    if (searchInput !== undefined) {
+        productList = productList.filter(p => 
+            p.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+            p.description.toLowerCase().includes(searchInput.toLowerCase())
+        );
     }
-    for (let i of productList) {
-        if (((minPrice == undefined) || (parseFloat(i.cost) >= minPrice)) &&
-            ((maxPrice == undefined) || (parseFloat(i.cost) <= maxPrice))) {
 
+    // Mostrar productos dentro del rango de precio
+    for (let i of productList) {
+        if ((minPrice === undefined || parseFloat(i.cost) >= minPrice) &&
+            (maxPrice === undefined || parseFloat(i.cost) <= maxPrice)) {
             productsHTML += `
             <div class="productItem" onclick="setProductID(${i.id})">
                 <div class="productImage">
@@ -63,6 +61,7 @@ function showProducts(productList, searchInput) {
         }
     }
 
+    // Si no se encontraron productos
     if (productsHTML === "") {
         productsHTML = "No se encontraron productos.";
     }
@@ -70,51 +69,50 @@ function showProducts(productList, searchInput) {
     document.getElementById("tproducts").innerHTML = productsHTML;
 }
 
+// Buscador.
 document.getElementById("buscador").addEventListener("input", (event) => {
-    currentSearchInput = event.target.value; // Actualiza el valor de la búsqueda globalmente
-    showProducts(currentProductsArray, currentSearchInput); // Usa el valor almacenado en currentSearchInput
-
+    currentSearchInput = event.target.value; // Actualiza el valor de la búsqueda
+    showProducts(currentProductsArray, currentSearchInput); // Muestra los productos con el filtro de búsqueda
 });
 
-//esta función toma el criterio con el cual vamos a ordenar los productos y el array mismo
+// Función para ordenar los productos según el criterio seleccionado
 function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
-//si se le pasa la lista de productos (el array), lo guarda en currentProductsArray y después usa la
-//función sortProducts para ordenar según el criterio (currentSortCriteria) y por último los muestra
-//con showProducts
-    if (productsArray != undefined) {
+
+    // Actualiza el array de productos y lo ordena
+    if (productsArray !== undefined) {
         currentProductsArray = productsArray;
     }
 
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
     showProducts(currentProductsArray, currentSearchInput);
 }
-//PUNTO 1:
+
+// Punto 1: Cargar los productos cuando la página esté lista
 document.addEventListener("DOMContentLoaded", function() {
-    //toma los datos de catID, luego de recibirlos verifica que estén ok (if) y los muestra con showproducts
-    let catId = localStorage.getItem("catID");
+    const catId = localStorage.getItem("catID");
 
     getJSONData(PRODUCTS_URL + catId + ".json").then(function(resultObj) {
         if (resultObj.status === "ok") {
             currentProductsArray = resultObj.data.products;
-            showProducts(currentProductsArray);
+            showProducts(currentProductsArray); // Mostrar productos cargados
         }
     });
-//FIN PUNTO 1.
-//líneas de código de eventos:
-//al hacer clic ordena los productos de menor a mayor
+
+    // Eventos para ordenar productos
     document.getElementById("sortPriceAsc").addEventListener("click", function() {
-        sortAndShowProducts(ORDER_ASC_BY_PRICE);
+        sortAndShowProducts(ORDER_ASC_BY_PRICE, currentProductsArray);
     });
-//al hacer clic ordena los productos de mayor a menor
+
     document.getElementById("sortPriceDesc").addEventListener("click", function() {
-        sortAndShowProducts(ORDER_DESC_BY_PRICE);
+        sortAndShowProducts(ORDER_DESC_BY_PRICE, currentProductsArray);
     });
-//al hacer clic ordena los productos por relevancia
+
     document.getElementById("sortByRelevance").addEventListener("click", function() {
-        sortAndShowProducts(ORDER_DESC_BY_RELEVANCE);
+        sortAndShowProducts(ORDER_DESC_BY_RELEVANCE, currentProductsArray);
     });
-//al hacer clic limpia los campos de filtro de precio y muestra los productos de nuevo
+
+    // Evento para limpiar el filtro de precio
     document.getElementById("clearRangeFilter").addEventListener("click", function() {
         document.getElementById("rangeFilterPriceMin").value = "";
         document.getElementById("rangeFilterPriceMax").value = "";
@@ -124,30 +122,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         showProducts(currentProductsArray);
     });
-//al hacer clic toma los valores introducidos, los convierte a números y muestra los productos dentro 
-//de ese rango. 
+
+    // Evento para aplicar el filtro de precio
     document.getElementById("rangeFilterPrice").addEventListener("click", function() {
-        minPrice = document.getElementById("rangeFilterPriceMin").value;
-        maxPrice = document.getElementById("rangeFilterPriceMax").value;
-
-
-        if ((minPrice != undefined) && (minPrice != "") && (parseFloat(minPrice)) >= 0) {
-            minPrice = parseFloat(minPrice);
-        } else {
-            minPrice = undefined;
-        }
-
-        if ((maxPrice != undefined) && (maxPrice != "") && (parseFloat(maxPrice)) >= 0) {
-            maxPrice = parseFloat(maxPrice);
-        } else {
-            maxPrice = undefined;
-        }
+        minPrice = parseFloat(document.getElementById("rangeFilterPriceMin").value) || undefined;
+        maxPrice = parseFloat(document.getElementById("rangeFilterPriceMax").value) || undefined;
 
         showProducts(currentProductsArray);
     });
 });
 
-//funcion que guarda el id y te redirige al product-info.html
+// Función que guarda el ID del producto y redirige a la página de información del producto
 function setProductID(id) {
     localStorage.setItem("productID", id);
     window.location = "product-info.html";
