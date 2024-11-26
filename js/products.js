@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //toma los datos de catID, luego de recibirlos verifica que estén ok (if) y los muestra con showproducts
     let catId = localStorage.getItem("catID");
 
-    getJSONData(PRODUCTS_URL + catId + ".json").then(function(resultObj) {
+    getJSONData(PRODUCTS_URL + catId).then(function(resultObj) {
         if (resultObj.status === "ok") {
             currentProductsArray = resultObj.data.products;
             showProducts(currentProductsArray);

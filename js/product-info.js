@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let productID = localStorage.getItem("productID");
 
     if (productID) {
-        getJSONData(PRODUCT_INFO_URL + productID + ".json").then(function (resultObj) {
+        getJSONData(PRODUCT_INFO_URL + productID ).then(function (resultObj) {
             if (resultObj.status === "ok") {
                 let product = resultObj.data;
 
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if(productID){
-    getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(function (commentsResult) {
+    getJSONData(PRODUCT_INFO_COMMENTS_URL + productID ).then(function (commentsResult) {
         if (commentsResult.status === "ok") {
             let comments = commentsResult.data;
             let commentsHTML = `
