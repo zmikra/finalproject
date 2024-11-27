@@ -1,36 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Obtener el ID del producto desde el localStorage
-    let productID = localStorage.getItem("productID");
+    const productID = localStorage.getItem("productID");
 
+    // Cargar producto
     if (productID) {
-        getJSONData(PRODUCT_INFO_URL + productID ).then(function (resultObj) {
+        getJSONData(PRODUCT_INFO_URL + productID).then(function (resultObj) {
             if (resultObj.status === "ok") {
-                let product = resultObj.data;
-
-                // Generar el HTML para mostrar los detalles del producto
-                let productHTML = generateProductHTML(product);
-                document.getElementById("product-info").innerHTML = productHTML;
-
-                // Evento para añadir al carrito
-                document.getElementById("setCart").addEventListener("click", function () {
-                    addToCart(product, productID);
-                });
-
-                // Mostrar productos relacionados
+                const product = resultObj.data;
+                displayProductDetails(product);
+                loadProductComments(productID);
                 showRelatedProducts(product.relatedProducts);
-            }
-        });
-
-        // Obtener los comentarios del producto
-        getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(function (commentsResult) {
-            if (commentsResult.status === "ok") {
-                let comments = commentsResult.data;
-                displayComments(comments);
             }
         });
     }
 
-    // Función para generar las estrellas de la calificación
+    // Función que genera estrellas para la calificación
     function generateStars(rating) {
         let starsHTML = '';
         const maxStars = 5;
@@ -38,55 +21,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const halfStar = rating % 1 >= 0.5 ? 1 : 0;
         const emptyStars = maxStars - fullStars - halfStar;
 
-        // Agregar estrellas completas
         for (let i = 0; i < fullStars; i++) {
             starsHTML += '<span class="fa fa-star checked"></span>';
         }
-
-        // Agregar estrella media si aplica
         if (halfStar) {
             starsHTML += '<span class="fa fa-star-half-o checked"></span>';
         }
-
-        // Agregar estrellas vacías
         for (let i = 0; i < emptyStars; i++) {
             starsHTML += '<span class="fa fa-star"></span>';
         }
-
         return starsHTML;
     }
 
-    if(productID){
-    getJSONData(PRODUCT_INFO_COMMENTS_URL + productID ).then(function (commentsResult) {
-        if (commentsResult.status === "ok") {
-            let comments = commentsResult.data;
-            let commentsHTML = `
-                                 <h4 class="comments-title">Opiniones del producto</h4>
-                               `;
-    
-            // Usando un bucle for para iterar sobre los comentarios
-            for (let i = 0; i < comments.length; i++) {
-                let comment = comments[i];
-                commentsHTML += `
-                    <li class="list-group-item">
-                      <div class="comment-header">
-                        <h5 class="userName">${comment.user}</h5>
-                        <span class="datetime">${comment.dateTime}</span>
-                        <div class="star-container">
-                            ${generateStars(comment.score)}
-                        </div>
-                    </div>
-                    <p class="productDescription">${comment.description}</p>
-                </li>
-            `;
-        }
-
-        document.getElementById("list").innerHTML = commentsHTML;
-    }
-
-    // Función para generar el HTML de los detalles del producto
-    function generateProductHTML(product) {
-        return `
+    // Mostrar detalles del producto
+    function displayProductDetails(product) {
+        const productHTML = `
             <div class="col-12 productDetails">
                 <h1 class="productName">${product.name}</h1>
                 <div class="productDetailSection">
@@ -120,29 +69,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
         `;
+        document.getElementById("product-info").innerHTML = productHTML;
+
+        // Añadir al carrito
+        document.getElementById("setCart").addEventListener("click", function () {
+            addToCart(product);
+        });
     }
 
-    // Función para mostrar las imágenes del producto en el carrusel
-    function showImages(images) {
-        let htmlImages = "";
-        for (let i = 0; i < images.length; i++) {
-            if (i == 0) {
-                htmlImages += `<div class="carousel-item active">
-                    <img src="${images[0]}" class="d-block w-100" alt="...">
-                </div>`;
-            } else {
-                htmlImages += `<div class="carousel-item">
-                    <img src="${images[i]}" class="d-block w-100" alt="...">
-                </div>`;
-            }
-        }
-        return htmlImages;
-    }
-
-    // Función para añadir un producto al carrito
-    function addToCart(product, productID) {
+    // Función para agregar producto al carrito
+    function addToCart(product) {
         let cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
-        let article = {
+        const article = {
             image: product.images[0],
             id: productID,
             name: product.name,
@@ -151,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: "$"
         };
 
+        // Verificar si el producto ya está en el carrito
         const existingArticle = cart.articles.find(item => item.id === article.id);
         if (existingArticle) {
             existingArticle.count += 1;
@@ -163,19 +102,100 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartBadge();
     }
 
-    // Evento para enviar una opinión
+    // Cargar comentarios
+    function loadProductComments(productID) {
+        getJSONData(PRODUCT_INFO_COMMENTS_URL + productID).then(function (commentsResult) {
+            if (commentsResult.status === "ok") {
+                const comments = commentsResult.data;
+                displayComments(comments);
+            }
+        });
+    }
+
+    // Mostrar comentarios
+    function displayComments(comments) {
+        let commentsHTML = '<h4 class="comments-title">Opiniones del producto</h4>';
+        comments.forEach(comment => {
+            commentsHTML += `
+                <li class="list-group-item">
+                    <div class="comment-header">
+                        <h5 class="userName">${comment.user}</h5>
+                        <span class="datetime">${comment.dateTime}</span>
+                        <div class="star-container">
+                            ${generateStars(comment.score)}
+                        </div>
+                    </div>
+                    <p class="productDescription">${comment.description}</p>
+                </li>
+            `;
+        });
+        document.getElementById("list").innerHTML = commentsHTML;
+    }
+
+    // Mostrar productos relacionados
+    function showRelatedProducts(relatedProducts) {
+        let relatedHTML = "";
+        relatedProducts.forEach(product => {
+            relatedHTML += `
+                <div class="col-3 related-product" data-id="${product.id}">
+                    <h5 class="related-product-title">${product.name}</h5>
+                    <img src="${product.image}" alt="${product.name}" class="img-fluid">
+                </div>
+            `;
+        });
+        document.querySelector(".related-products-list").innerHTML = relatedHTML;
+
+        // Agregar evento de clic para productos relacionados
+        document.querySelectorAll(".related-product").forEach(item => {
+            item.addEventListener("click", function () {
+                const newProductID = item.getAttribute("data-id");
+                localStorage.setItem("productID", newProductID);
+                window.location.href = "product-info.html";
+            });
+        });
+    }
+
+    // Mostrar imágenes del producto
+    function showImages(images) {
+        return images.map((image, index) => `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                <img src="${image}" class="d-block w-100" alt="...">
+            </div>
+        `).join('');
+    }
+
+    // Manejo de la opinión con estrellas
+    const stars = document.querySelectorAll('.star');
+
+    // Evento click para pintar estrellas
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            stars.forEach(s => s.style.color = 'lightgray');
+            for (let i = 0; i < star.dataset.value; i++) {
+                stars[i].style.color = 'orange';
+            }
+        });
+
+        // Evento doble clic para despintar todas las estrellas
+        star.addEventListener('dblclick', () => {
+            stars.forEach(s => s.style.color = 'lightgray');
+        });
+    });
+
+    // Enviar opinión
     document.querySelector(".submit-btn").addEventListener("click", () => {
-        let opinionText = document.getElementById("opinion").value;
+        const opinionText = document.getElementById("opinion").value;
         let selectedStars = 0;
-        for (let i = 0; i < stars.length; i++) {
-            if (stars[i].style.color === "orange") {
+
+        stars.forEach(star => {
+            if (star.style.color === "orange") {
                 selectedStars++;
             }
-        }
+        });
 
         if (opinionText && selectedStars > 0) {
-            let usuario = localStorage.getItem("nombre");
-            let newCommentHTML = `
+            const usuario = localStorage.getItem("nombre");
+            const newCommentHTML = `
                 <li class="list-group-item">
                     <div class="comment-header">
                         <h5 class="userName">${usuario}</h5>
@@ -187,32 +207,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="productDescription">${opinionText}</p>
                 </li>
             `;
-
             document.getElementById("list").innerHTML += newCommentHTML;
             document.getElementById("opinion").value = '';
-            for (let i = 0; i < stars.length; i++) {
-                stars[i].style.color = 'lightgray';
-            }
+            stars.forEach(s => s.style.color = 'lightgray');
         } else {
             alert("Por favor, escribe un comentario y selecciona una calificación.");
         }
-    });
-
-    // Manejo de estrellas de calificación
-    const stars = document.querySelectorAll('.star');
-
-    
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            stars.forEach(s => s.style.color = 'lightgray'); // Resetear todas
-            for (let i = 0; i < star.dataset.value; i++) {
-                stars[i].style.color = 'orange'; // Pintar hasta la seleccionada
-            }
-        });
-
-        // Evento doble clic para despintar todas las estrellas
-        star.addEventListener('dblclick', () => {
-            stars.forEach(s => s.style.color = 'lightgray'); // Resetear todas las estrellas
-        });
     });
 });
