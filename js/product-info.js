@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let productID = localStorage.getItem("productID");
 
     if (productID) {
-        // Obtener los datos del producto
-        getJSONData(PRODUCT_INFO_URL + productID + ".json").then(function (resultObj) {
+        getJSONData(PRODUCT_INFO_URL + productID ).then(function (resultObj) {
             if (resultObj.status === "ok") {
                 let product = resultObj.data;
 
@@ -57,40 +56,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return starsHTML;
     }
 
-    // Función para mostrar los productos relacionados
-    function showRelatedProducts(relatedProducts) {
-        let relatedHTML = "";
-        for (let i = 0; i < relatedProducts.length; i++) {
-            let product = relatedProducts[i];
-            relatedHTML += `
-                <div class="col-3 related-product" data-id="${product.id}">
-                    <h5 class="related-product-title">${product.name}</h5>
-                    <img src="${product.image}" alt="${product.name}" class="img-fluid"> 
-                </div>
-            `;
-        }
-
-        document.querySelector(".related-products-list").innerHTML = relatedHTML;
-
-        // Agregar eventos de click a los productos relacionados
-        let relatedItems = document.querySelectorAll(".related-product");
-        for (let i = 0; i < relatedItems.length; i++) {
-            relatedItems[i].addEventListener("click", function () {
-                let newProductID = relatedItems[i].getAttribute("data-id");
-                localStorage.setItem("productID", newProductID);
-                window.location.href = "product-info.html";
-            });
-        }
-    }
-
-    // Función para mostrar los comentarios
-    function displayComments(comments) {
-        let commentsHTML = `<h4 class="comments-title">Opiniones del producto</h4>`;
-        for (let i = 0; i < comments.length; i++) {
-            let comment = comments[i];
-            commentsHTML += `
-                <li class="list-group-item">
-                    <div class="comment-header">
+    if(productID){
+    getJSONData(PRODUCT_INFO_COMMENTS_URL + productID ).then(function (commentsResult) {
+        if (commentsResult.status === "ok") {
+            let comments = commentsResult.data;
+            let commentsHTML = `
+                                 <h4 class="comments-title">Opiniones del producto</h4>
+                               `;
+    
+            // Usando un bucle for para iterar sobre los comentarios
+            for (let i = 0; i < comments.length; i++) {
+                let comment = comments[i];
+                commentsHTML += `
+                    <li class="list-group-item">
+                      <div class="comment-header">
                         <h5 class="userName">${comment.user}</h5>
                         <span class="datetime">${comment.dateTime}</span>
                         <div class="star-container">

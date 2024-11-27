@@ -92,7 +92,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 document.addEventListener("DOMContentLoaded", function() {
     const catId = localStorage.getItem("catID");
 
-    getJSONData(PRODUCTS_URL + catId + ".json").then(function(resultObj) {
+    getJSONData(PRODUCTS_URL + catId).then(function(resultObj) {
         if (resultObj.status === "ok") {
             currentProductsArray = resultObj.data.products;
             showProducts(currentProductsArray); // Mostrar productos cargados
