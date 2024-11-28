@@ -16,24 +16,31 @@ const hideSpinner = () => document.getElementById("spinner-wrapper").style.displ
 const getJSONData = (url) => {
     const result = {};
     showSpinner();
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) throw Error(response.statusText);
-            return response.json();
-        })
-        .then((response) => {
-            result.status = 'ok';
-            result.data = response;
-            hideSpinner();
-            return result;
-        })
-        .catch((error) => {
-            result.status = 'error';
-            result.data = error;
-            hideSpinner();
-            return result;
-        });
-};
+    const token = localStorage.getItem("token");
+  
+    return fetch(url, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      }
+    })
+      .then(response => {
+        if (!response.ok) throw Error(response.statusText);
+        return response.json();
+      })
+      .then((response) => {
+        result.status = 'ok';
+        result.data = response;
+        hideSpinner();
+        return result;
+      })
+      .catch((error) => {
+        result.status = 'error';
+        result.data = error;
+        hideSpinner();
+        return result;
+      });
+  };
+  
 
 document.addEventListener("DOMContentLoaded", () => {
     // Verificar si la sesión está activa
