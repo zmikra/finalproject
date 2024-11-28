@@ -280,6 +280,52 @@ function clearCart() {
     updateCartBadge();
 }
 
+// Función para mandar el carrito al backend
+async function saveCartToBackend() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || { articles: [] };
+
+    if (cart.articles.length === 0) {
+        alert("El carrito está vacío. Agrega productos para continuar.");
+        return;
+    }
+
+    const cartData = {
+        user: "usuario@ejemplo.com",  // cambia al usuario autenticado
+        cartItems: cart.articles
+    };
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("No has iniciado sesión. Debes iniciar sesión para continuar.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(cartData)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al guardar el carrito.");
+        }
+
+        const result = await response.json();
+        console.log(result);
+        alert("Carrito guardado correctamente.");
+        clearCart(); // limpia el carrito local después de la compra
+        loadCart();
+        updateCartBadge();
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
 function finalizarCompra() {
     if (validarDireccion() && validarEnvio() && validarCantidadProductos() && validarPago()) {
         // Bajar opacidad y mostrar cursor de espera en la pantalla actual
@@ -294,8 +340,13 @@ function finalizarCompra() {
 
             // Cambiar a la sección de confirmación y limpiar el carrito
             nextSection('confirmacion');
+            saveCartToBackend(); // Llamo a saveCartToBackend para guardar el carrito al backend
             clearCart();
         }, 2000);
     }
 }
+
+
+
+
 
