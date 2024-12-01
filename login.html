@@ -19,13 +19,14 @@
       <form id="loginForm">
         <div class="form-group">
           <label for="usuario" class="sr-only">Usuario:</label>
-          <input type="email" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su E-mail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+          <input type="email" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su E-mail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+
         </div>
         <div class="form-group mt-4">
           <label for="contrasena" class="sr-only">Contraseña:</label>
           <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese su contraseña" required>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-4" onclick="validarFormulario()">Login</button>
+        <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
       </form>
     </div>
   </main>
